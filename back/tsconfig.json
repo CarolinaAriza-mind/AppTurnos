@@ -1,14 +1,13 @@
-{
-  // Visit https://aka.ms/tsconfig to read more about this file
+{ // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    // "rootDir": "./src",
+    "rootDir": "./src",
     "outDir": "./dist",
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    //"module": "nodenext",
-    //"target": "esnext",
+   "module": "commonjs",
+    "target": "es2016",
     //"types": [],
     // For nodejs:
     // "lib": ["esnext"],
@@ -25,8 +24,8 @@
     //"exactOptionalPropertyTypes": true,
 
     // Style Options
-    // "noImplicitReturns": true,
-    // "noImplicitOverride": true,
+     "noImplicitReturns": true,
+     "noImplicitOverride": true,
     // "noUnusedLocals": true,
     // "noUnusedParameters": true,
     // "noFallthroughCasesInSwitch": true,
@@ -34,11 +33,14 @@
 
     // Recommended Options
     "strict": true,
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
+    //"jsx": "react-jsx",
+    //"verbatimModuleSyntax": true,
+    //"isolatedModules": true,
+    //"noUncheckedSideEffectImports": true,
+    //"moduleDetection": "force",
     "skipLibCheck": true,
-  }
+  },
+"include": ["src/**/*.ts"],
+"exclude": ["node_modules"]
+
 }

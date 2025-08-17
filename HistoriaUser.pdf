@@ -1,0 +1,58 @@
+Aplicacion para gestion de turnos en Consultoría de Terapias
+Holísticas
+Historia de Usuario:
+1. Autenticación de Usuario:
+El usuario necesita poder registrarse e ingresar en la plataforma, para poder gestionar los
+turnos;
+Criterios de Aceptación:
+- Debe poder ingresar a la plataforma solo si:
+. Está registrado y verificado (autenticado),
+. Ambos pasos deben realizarse con el nombre y email,
+. No podrá registrar dos turnos en la misma fecha y hora,
+2. Reserva de Turnos:
+El usuario autenticado debe poder generar un turno en una fecha y hora específica, dentro
+del horario de atención (10hs a 17hs ) del Centro Holístico, para poder ser atendido;
+Criterios de Aceptación:
+- Solo se pueden agendar turnos dentro del horario de atención, exceptuando los fines
+de semana que son no laborables,
+- En el caso de que intente generar un turno por fuera de los días y horarios de
+atención establecidos por el centro, le aparecerá una ventana que le marcará un
+error al crear el turno.
+3. Visualizar los turnos generados:
+El usuario quiere poder ver una lista con los turnos que ha generado, para poder
+gestionarlos a su preferencia;
+Criterios de Aceptación:
+- Debe poder ver una lista de sus turnos pasados y futuros,
+- En cada turno, debe poder visualizar la fecha y hora, y también la opción de poder
+cancelarlo si así lo necesitara.
+4. Cancelación de turnos:
+El usuario quiere tener la posibilidad de cancelar el turno que ha generado, con la
+posibilidad de 24 horas antes, para poder liberar el espacio, en el caso de que no pueda
+tomarlo;
+Criterios de Aceptación:
+- Solo podrá cancelarse los turnos con 24 horas de anticipación,
+- Al cancelar el turno, es sacado de la lista de turnos futuros.
+5. Restricción de generación de turno para los fines de semana:
+El usuario desea inhabilitar la posibilidad de agendar turnos los fines de semana, ya que los
+considera como días no laborables;
+Criterios de Aceptación:
+- Sábados y Domingos no deben aparecer como días disponibles en el calendario de
+agendamiento de turnos.
+6. Envio email de confirmación al crear la cuenta :
+El usuario quiere asegurarse que su cuenta a sido creada con éxito, por eso desea recibir la
+confirmación por correo;
+Criterios de Aceptación:
+- El sistema tiene que poder enviar un correo de confirmación inmediatamente luego
+de crear la cuenta,
+- El mensaje debe contener un mensaje de bienvenida y de confirmar que la cuenta
+ha sido creada con éxito,
+- El correo debe ser enviado a la dirección de correo enviada al crear el usuario.
+7. Envío de correo de confirmación de creación o cancelación de turno:
+El usuario quiere recibir un correo que le confirme cuando cree un correo y también cuando
+necesite cancelar alguno.
+Criterios de Aceptación:
+- El sistema debe de enviar un correo automáticamente, luego de la creación y/o la
+cancelación de algún turno ,
+- El mensaje del email debe especificar la confirmación de cualquiera de las dos
+acciones realizadas,
+- El email debe ser enviado al correo disponible para la creación del usuario.
