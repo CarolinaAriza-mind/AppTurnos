@@ -1,34 +1,8 @@
-const num1: number = 24;
-const palabra: string = "Alegre";
+import server from "./server.js";
+import {PORT} from "./config/envs.js";
 
-function saludar(num1: number, palabra: string): string {
-  const saludo = `Estoy muy ${palabra}, cumplo ${num1}`;
-  return saludo;
-}
 
-saludar(num1, palabra);
 
-interface IUser {
-  name: string;
-  age: number;
-  active: boolean;
-}
-
-interface IAdminUser extends IUser {
-  cargo: string;
-  time: number;
-}
-
-const persona = {
-  name: "Carlos",
-  age: 34,
-  active: true,
-  cargo: "jefe",
-  time: 20,
-};
-
-function mostrarPersona(persona: IAdminUser) {
-    console.log("Datos del administrador:" , persona);
-    
-}
-mostrarPersona(persona);
+server.listen(PORT, () => {
+  console.log( `Servidor escuchando en el puerto ${PORT}`);
+});
