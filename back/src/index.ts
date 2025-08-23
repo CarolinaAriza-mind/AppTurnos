@@ -1,5 +1,5 @@
-import server from "./server.js";
-import {PORT} from "./config/envs.js";
+import server from "./server";
+import {PORT} from "./config/envs";
 
 
 
