@@ -1,15 +1,21 @@
 
-export interface UserRegisterDTO {
+export interface UserDTO {
+    id: number,
     name: string,
-    age: number,
     email: string,
-    username:string,
-    password: string,
-    dni: number
+    birthdate: Date,
+    nDni: number
+    credentialsId: number
 }
 
-export interface LoginUserDTO {
+export interface UserRegisterDTO {
+    name: string,
     email: string,
-    password: string
+    birthdate: Date,
+    nDni: number,
+    credentials: {
+    username: string,
+    password:string
+}
 }
 

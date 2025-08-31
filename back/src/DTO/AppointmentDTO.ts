@@ -1,7 +1,12 @@
 
-export interface ScheduleAppointmentDTO {
-    name: string,
-    email: string,
+export interface AppointmentDTO {
+    id: number,
     date: Date,
-    time: string
+    time: string,
+    userID: number
+    appointmentStatus: Status
+}
+export enum Status {
+    active = "active",
+    cancel = "cancelled"
 }
