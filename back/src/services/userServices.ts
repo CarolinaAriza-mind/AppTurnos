@@ -1,61 +1,44 @@
-import { UserDTO } from "../DTO/UserDTO";
+import { appDataSource, userModel } from "../config/dataSource";
+import { UserRegisterDTO } from "../DTO/UserDTO";
+import { Credential } from "../Entities/CredentialEntity";
+import { User } from "../Entities/UserEntity";
 import { createNewCredentials } from "./credentialServices";
 
-const users: UserDTO[] = [];
-let newId: number = 1;
+export const createNewUserService = async (
+  user: UserRegisterDTO
+): Promise<User> => {
+  const resultTrans: Promise<User> = appDataSource.transaction(
+    async (entityManager) => {
+      const credential: Credential = await createNewCredentials(
+        entityManager,
+        user.username,
+        user.password
+      );
+      const nuevoUsuario: User = entityManager.create(User, {
+        name: user.name,
+        email: user.email,
+        birthdate: user.birthdate,
+        nDni: user.nDni,
+        credentials: credential,
+      });
 
-export const createNewUserService = (
-  name: string,
-  email: string,
-  birthdate: Date,
-  nDni: number,
-  credentialsId: number
-): UserDTO => {
-  const errores: string[] = [];
+      return await entityManager.save(nuevoUsuario);
+    }
+  );
 
-  if (users.some((u) => u.name === name)) {
-    errores.push("Ya existe un usuario con este nombre.");
-  }
-
-  if (users.some((u) => u.email === email)) {
-    errores.push("Ya existe un usuario con este correo electrónico.");
-  }
-
-  if (users.some((u) => u.nDni === nDni)) {
-    errores.push("Ya existe un usuario con este número de documento.");
-  }
-
-  const user: UserDTO = {
-    id: newId++,
-    name,
-    email,
-    birthdate,
-    nDni,
-    credentialsId,
-  };
-  users.push(user);
-  return user;
+  return resultTrans;
 };
 
-export const AllUsersServices = () => {
-  return users;
-};
-console.log(users);
-
-export const returnUserByIdServices = (id: number): UserDTO | undefined => {
-  return users.find((u) => u.id === id);
+export const AllUsersServices = async (): Promise<User[]> => {
+  return await userModel.find();
 };
 
-export const createUserWithCredentialService = async (
-  name: string,
-  email: string,
-  birthdate: Date,
-  nDni: number,
-  username: string,
-  password: string
-):Promise<UserDTO> => {
-  const credentials = await createNewCredentials(username, password);
-
-  const newCred = createNewUserService(name, email, birthdate, nDni, credentials);
-  return newCred;
+export const returnUserByIdServices = async (id: number): Promise<User> => {
+  const IdUser: User | null = await userModel.findOne({
+    where: {
+      id: id,
+    },
+  });
+  if (!IdUser) throw new Error(`Usuario con id: ${id}, no encontrado`);
+  return IdUser;
 };

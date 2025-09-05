@@ -1,0 +1,28 @@
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
+import { Status } from "../DTO/AppointmentDTO"
+import { User } from "./UserEntity"
+
+@Entity("appointment")
+export class Appointment {
+
+    @PrimaryGeneratedColumn()
+    id: number
+
+    @Column({type: "date" , nullable:false})
+    date: Date
+
+    @Column({type:"varchar", length: 5, nullable: false })
+    time: string
+
+    @ManyToOne(() =>User, user => user.appointment, {nullable:false})
+    user: User
+
+    @Column({type: "varchar", length: 10 , nullable:false , default: Status.active})
+    appointmentStatus: Status
+    
+    @CreateDateColumn()
+    creatAt: Date
+    
+    @UpdateDateColumn()
+    upDate: Date
+}

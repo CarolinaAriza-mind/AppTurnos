@@ -5,7 +5,7 @@ export interface UserDTO {
     email: string,
     birthdate: Date,
     nDni: number
-    credentialsId: number
+    credentials: number
 }
 
 export interface UserRegisterDTO {
@@ -13,9 +13,7 @@ export interface UserRegisterDTO {
     email: string,
     birthdate: Date,
     nDni: number,
-    credentials: {
     username: string,
     password:string
-}
 }
 

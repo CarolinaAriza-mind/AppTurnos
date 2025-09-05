@@ -10,11 +10,13 @@ export default defineConfig([
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     languageOptions: {
-      parser: tsParser,
+      parser: "@typescript-eslint/parser",
+      extend: ["plugin:@typescript-eslint/recommended"],
       parserOptions: {
         project: "./tsconfig.json",
         ecmaFeatures: { jsx: true },
         sourceType: "module",
+        include: ["src", "eslint.config.mjs"],
       },
       globals: globals.node,
     },

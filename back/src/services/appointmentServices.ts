@@ -1,79 +1,69 @@
 import { AppointmentDTO, Status } from "../DTO/AppointmentDTO";
+import { Appointment } from "../Entities/AppointmentEntitiy";
+import { appointmentModel } from "../repositories/appointmentRepo";
+import { returnUserByIdServices } from "./userServices";
 
-const appointments: AppointmentDTO[] = [];
-let nextAppointmentId = 1;
-
-export const everyAppointmentService = (): AppointmentDTO[] => {
-  return appointments;
+export const everyAppointmentService = async (): Promise<
+  Appointment[] | undefined
+> => {
+  const apponitmentFound = appointmentModel.find();
+  if ((await apponitmentFound).length > 0) return apponitmentFound;
+  throw new Error("Lista de Turnos no encontrada");
 };
 
-everyAppointmentService();
-
-export const getAppointmentByIdService = (id: number) => {
-  const shift = appointments.find((t) => t.id === id);
+export const getAppointmentByIdService = async (id: number) => {
+  const shift = appointmentModel.findOne({
+    where: {
+      id: id,
+    },
+    relations: ["user"],
+  });
+  if (!shift) {
+    throw new Error("Este turno no existe");
+  }
   return shift;
 };
 
-export const createNewAppointment = async (
-  date: Date,
-  time: string,
-  userID: number,
-  appointmentStatus: Status
-): Promise<AppointmentDTO> => {
-  if (!userID) {
-    throw new Error("Falta Id de Usuario");
+export const createNewAppointment = async (appoint: AppointmentDTO) => {
+  await returnUserByIdServices(appoint.userID);
+
+  const turnoExistente = await appointmentModel.findOne({
+    where: {
+      user: { id: appoint.userID },
+      date: appoint.date,
+      time: appoint.time,
+      appointmentStatus: Status.active,
+    },
+  });
+  if (turnoExistente) {
+    throw new Error("Este turno ya esta ocupado");
   }
 
-  const [hourStr, minuteStr] = time.split(":");
-  const hour = parseInt(hourStr, 10);
-  const minute = parseInt(minuteStr, 10);
+  appointmentModel.validadAppointment(appoint.date, appoint.time);
 
-  if (isNaN(hour) || isNaN(minute)) {
-    throw new Error("Formato de hora inválido. Usá HH:mm");
-  }
+  const newAppoint: Appointment = appointmentModel.create({
+    date: appoint.date,
+    time: appoint.time,
+    appointmentStatus: Status.active,
+    user: { id: appoint.userID },
+  });
 
-  if (hour < 8 || hour > 14 || (hour === 14 && minute > 0)) {
-    throw new Error("El horario permitido para agendar es de 8:00 a 14:00");
-  }
-
-  const dayOfWeek = date.getDay();
-  if (dayOfWeek === 0 || dayOfWeek === 6) {
-    throw new Error(
-      "No se pueden agendar turnos los fines de semana. Solo de Lunes a Viernes"
-    );
-  }
-
-  const conflict = appointments.find(
-    (app) =>
-      app.userID &&
-      app.date.toDateString() === date.toDateString() &&
-      app.time === time
-  );
-
-  if (conflict) {
-    throw new Error(
-      "Ya existe un turno agendado para este usuario en ese horario"
-    );
-  }
-
-  const newAppoint: AppointmentDTO = {
-    id: nextAppointmentId++,
-    date: new Date,
-    time,
-    userID,
-    appointmentStatus,
-  };
-
-  appointments.push(newAppoint);
-  return newAppoint;
+  return await appointmentModel.save(newAppoint);
 };
 
-export const statusAppointmentService = async (
-  id: number
-): Promise<Status | null> => {
-  const turno = appointments.find((t) => t.id === id);
-  if (!turno) return null;
+export const statusAppointmentService = async (id: number): Promise<void> => {
+  if (!Number.isInteger(id) || id <= 0) throw new Error("ID inválido");
 
-  turno.appointmentStatus = Status.cancel
-  return turno.appointmentStatus ;
+  const turno = await appointmentModel.findOne({
+    where: { id },
+    relations: ["user"],
+  });
+  if (!turno) throw new Error("No se encontró turno para cancelar");
+
+  if (turno.appointmentStatus !== Status.active) {
+    throw new Error("Este turno se encuentra en estado 'cancel'");
+  }
+
+  turno.appointmentStatus = Status.cancel;
+  await appointmentModel.save(turno);
 };

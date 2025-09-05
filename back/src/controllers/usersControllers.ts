@@ -2,36 +2,42 @@ import { Request, Response } from "express";
 import { UserRegisterDTO } from "../DTO/UserDTO";
 import {
   AllUsersServices,
-  createUserWithCredentialService,
+  createNewUserService,
   returnUserByIdServices,
 } from "../services/userServices";
+import { PostgresError } from "../DTO/ErrorDTO";
 import { authNewCredentials } from "../services/credentialServices";
 import { CredentialDTO } from "../DTO/CredentialsDTO";
+import { userModel } from "../config/dataSource";
+import { User } from "../Entities/UserEntity";
+import { sendWelcomeEmail } from "../services/mailerServices";
 
-export const getUserController = (req: Request, res: Response) => {
+export const getUserController = async (req: Request, res: Response) => {
   try {
-    const users = AllUsersServices();
-    res.status(200).json({ msge: "Listado de todos los usuarios", users });
-    console.log(req.body);
+    res.status(200).json({
+      msge: "Listado de todos los usuarios",
+      data: await AllUsersServices(),
+    });
   } catch (err) {
-    console.error("Error en getUserController:", err);
-    res.status(400).json({ message: "No se pudo obtener usuarios" });
+    res.status(400).json({
+      msg: err instanceof Error ? err.message : "No se pudo obtener usuarios",
+    });
   }
 };
 
-export const getUserByIdController = (
+export const getUserByIdController = async (
   req: Request<{ id: string }>,
   res: Response
 ) => {
   try {
-    const id: number = parseInt(req.params.id);
-    const user = returnUserByIdServices(id);
-
-    if (!user) return res.status(404).json("Usuario no encontrado");
-    res.status(200).json({ msge: "Detalle de usuario por su ID", data: user });
+    res.status(200).json({
+      msge: "Detalle de usuario por su ID",
+      data: await returnUserByIdServices(parseInt(req.params.id, 10)),
+    });
   } catch (err) {
-    console.error("Error en getUsserByIdController", err);
-    res.status(400).json("Error al encontrar usuario por ID");
+    res.status(400).json({
+      msg: err instanceof Error ? err.message : "Usuario no encontrado",
+    });
   }
 };
 
@@ -40,22 +46,22 @@ export const registerUserController = async (
   res: Response
 ) => {
   try {
-    const { name, email, birthdate, nDni, credentials } = req.body;
-    const { username, password } = credentials;
-    const newUser = await createUserWithCredentialService(
-      name,
-      email,
-      new Date(birthdate),
-      nDni,
-      username,
-      password
-    );
-
-    res.status(200).json({ msge: "Nuevo Usuario registrado", data: newUser });
-    console.log(newUser);
+    const newUser = await createNewUserService(req.body);
+    await sendWelcomeEmail(newUser.email, newUser.name);
+    res.status(201).json({
+      msge: "Nuevo Usuario registrado",
+      data: newUser,
+    });
   } catch (err) {
-    console.error("Error registerUserController", err);
-    res.status(400).json("No se pudo realizar el registro del Usuario");
+    const detailErr = err as PostgresError;
+    res.status(400).json({
+      msg:
+        detailErr instanceof Error
+          ? detailErr.detail
+            ? detailErr.detail
+            : detailErr.message
+          : "Error desconocido",
+    });
   }
 };
 
@@ -64,17 +70,30 @@ export const loginUserController = async (
   res: Response
 ) => {
   try {
-    const { username, password } = req.body;
-    const credentialsId = await authNewCredentials(username, password);
-
-    if (typeof username !== "string" || typeof password !== "string") {
-      return res.status(400).json({ msge: "Formato inválido de credenciales" });
-    }
-    res
-      .status(200)
-      .json({ msge: "Inicio de sesion exitosa", data: credentialsId });
+    const credentialID = await authNewCredentials(
+      req.body.username,
+      req.body.password
+    );
+    const userFound: User | null = await userModel.findOne({
+      where: {
+        credentials: {
+          id: credentialID,
+        },
+      },
+    });
+    return res.status(200).json({
+      login: true,
+      user: userFound,
+    });
   } catch (err) {
-    console.error("Error loginUserController", err);
-    res.status(400).json("Sesion caducada");
+    const detailErr = err as PostgresError;
+    res.status(400).json({
+      msg:
+        detailErr instanceof Error
+          ? detailErr.detail
+            ? detailErr.detail
+            : detailErr.message
+          : "Error desconocido",
+    });
   }
 };
