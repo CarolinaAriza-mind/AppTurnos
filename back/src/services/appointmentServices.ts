@@ -59,11 +59,21 @@ export const statusAppointmentService = async (id: number): Promise<void> => {
     relations: ["user"],
   });
   if (!turno) throw new Error("No se encontró turno para cancelar");
-
+  
   if (turno.appointmentStatus !== Status.active) {
     throw new Error("Este turno se encuentra en estado 'cancel'");
   }
-
+  const ahora = new Date();
+  const diferenciaHoras =
+   (turno.date.getTime() - ahora.getTime()) / (1000 * 60 * 60);
+  
+  if (diferenciaHoras < 24) {
+   throw new Error(
+     "El turno solo puede cancelarse con al menos 24 horas de anticipación"
+   )
+  }
   turno.appointmentStatus = Status.cancel;
   await appointmentModel.save(turno);
 };
+
+  
