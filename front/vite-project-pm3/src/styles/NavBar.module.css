@@ -2,22 +2,21 @@
   display: flex;
   justify-content: center;
   align-content: center;
-  background-image: url("https://wallpapers.com/images/high/fractal-infinity-chaos-78nyaec91cdnei63.webp");
-  background-position: 100%;
+  background-color: rgb(0, 0, 0);
 }
 
 .item {
-  background-color: #f3e5f5;
-  color: #8d5597;
+  background-color: #000000;
+  color:#ffffff;
   padding: 5px;
   margin: 30px;
   font-family: "Spirit", sans-serif;
   border-radius: 5px;
-  border: 2px solid #ce93d8;
-  font-size: 30px;
+  border: 2px solid #7c8320;
+  font-size: 50px;
 }
 
 .item:hover {
-  background-color: black;
-  color: #8d5597;
+  background-color:#ffffff; 
+  color: #000000;
 }
