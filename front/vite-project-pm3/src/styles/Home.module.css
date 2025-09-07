@@ -1,0 +1,29 @@
+.containerHome {
+  
+  justify-content: center;
+  align-content: center;
+}
+
+.title {
+  font-family: "Cinzel Decorative", sans-serif;
+  margin-top: 50px;
+  color: #ce93d8;
+  font-size: 80px;
+  text-align: center;
+}
+
+.subtitle {
+  color: #a958b8;
+  font-size: 20px;
+  font-family: "Cinzel Decorative", sans-serif;
+  text-align: center;
+}
+
+#imgPresentacion {
+width: 600px;
+height: 400px;
+margin: 80px;
+justify-content: center;
+align-items: center;
+border-radius: 20px;
+}

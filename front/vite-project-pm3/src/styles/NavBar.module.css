@@ -1,0 +1,23 @@
+.containerNav {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-image: url("https://wallpapers.com/images/high/fractal-infinity-chaos-78nyaec91cdnei63.webp");
+  background-position: 100%;
+}
+
+.item {
+  background-color: #f3e5f5;
+  color: #8d5597;
+  padding: 5px;
+  margin: 30px;
+  font-family: "Spirit", sans-serif;
+  border-radius: 5px;
+  border: 2px solid #ce93d8;
+  font-size: 30px;
+}
+
+.item:hover {
+  background-color: black;
+  color: #8d5597;
+}
