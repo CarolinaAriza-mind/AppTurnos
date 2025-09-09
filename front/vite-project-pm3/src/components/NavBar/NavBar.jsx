@@ -1,20 +1,26 @@
 import style from "./NavBar.module.css";
-import rena from "../../assets/rena.jpg"
+import rena from "../../assets/rena.jpg";
 
 const NavBar = () => {
+  const items = [
+    "Inicio",
+    "Agenda tu cita",
+    "Nuestras sesiones",
+    "Registrate aqui",
+    "ingresa",
+  ];
+
   return (
-    <div className={style.containerNav}>
-      <div>
-      <img id={style.logo} src={rena} alt="Rena"/>
-      </div>
+    <nav className={style.containerNav}>
+      <img className={style.logo} src={rena} alt="Rena" />
       <ul>
-        <a className={style.item}>Inicio</a>
-        <a className={style.item}>Agenda tu cita</a>
-        <a className={style.item}>Nuestras Sesiones</a>
-        <a className={style.item}>Registrate aqui</a>
-        <a className={style.item}>Ingresa</a>
+        {items.map((item, index) => (
+          <li key={index}>
+            <a href="#" className={style.item}>{item}</a>
+          </li>
+        ))}
       </ul>
-    </div>
+    </nav>
   );
 };
 export default NavBar;

@@ -1,36 +1,27 @@
 import Buttons from "../../components/Buttons/Buttons";
 import style from "./Home.module.css";
+import { TextHome } from "../../helpers/Home";
+import renaser from "../../assets/renaser.jpg"
 
 const Home = () => {
   return (
     <div>
       <div className={style.containerHome}>
-        <h1 className={style.title}>Bienvenido a RenaSer</h1>
-        <p className={style.subtitle}>
-          un espacio para conectar con lo mas profundo de tu ser
-        </p>
+        <h1 className={style.title}>{TextHome.bienvenida}</h1>
+        <p className={style.subtitle}>{TextHome.subtitulo}</p>
       </div>
-      <section id={style.seccionPresentacion}>
+      <section className={style.seccionPresentacion}>
         <div>
           <img
-            id={style.imgPresentacion}
-            src="https://st.depositphotos.com/1001951/4735/i/450/depositphotos_47357993-stock-photo-fragility-of-a-human-creature.jpg"
+            className={style.imgPresentacion}
+            src={renaser}
+            alt="Imagen que representa la fragilidad y profundidad del ser humano"
           ></img>
         </div>
         <div className={style.textoPresentacion}>
-          <h2 className={style.titles}>
-            La mejor forma de predecir el futuro, es Creandolo
-          </h2>
-          <p className={style.textParrafoP}>
-            Aprende a observar tu realidad, como un conjunto de herramientas
-            para poder vivir la vida que soñaste.
-          </p>
-          <span>
-            {" "}
-            Nuestras terapias, te ofrecen una guia necesaria, para poder
-            utilizar estas herramientas a tu favor! Reserva tu turno hoy, y
-            comienza el viaje de transformacion{" "}
-          </span>
+          <h2 className={style.titles}>{TextHome.tituloParrafo}</h2>
+          <p className={style.textParrafoP}>{TextHome.parrafo}</p>
+          <span>{TextHome.descripcion}</span>
           <Buttons />
         </div>
       </section>
