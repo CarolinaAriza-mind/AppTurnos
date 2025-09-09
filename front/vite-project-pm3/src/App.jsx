@@ -1,8 +1,10 @@
 import "./App.css";
-import Home from "./views/Home";
+import NavBar from "./components/NavBar/NavBar";
+import Home from "./views/Home/Home";
 function App() {
   return (
     <>
+      <NavBar />
       <Home />
     </>
   );

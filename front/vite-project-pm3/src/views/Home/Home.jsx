@@ -1,12 +1,10 @@
-import NavBar from "../components/NavBar";
-import style from "../styles/Home.module.css";
-import styles from "../styles/NavBar.module.css"
+import Buttons from "../../components/Buttons/Buttons";
+import style from "./Home.module.css";
 
 const Home = () => {
   return (
     <div>
       <div className={style.containerHome}>
-        <NavBar />
         <h1 className={style.title}>Bienvenido a RenaSer</h1>
         <p className={style.subtitle}>
           un espacio para conectar con lo mas profundo de tu ser
@@ -20,15 +18,20 @@ const Home = () => {
           ></img>
         </div>
         <div className={style.textoPresentacion}>
-          <h2 className={style.titles}>La mejor forma de predecir el futuro, es Creandolo</h2>
+          <h2 className={style.titles}>
+            La mejor forma de predecir el futuro, es Creandolo
+          </h2>
           <p className={style.textParrafoP}>
             Aprende a observar tu realidad, como un conjunto de herramientas
             para poder vivir la vida que soñaste.
-            Nuestras terapias, te ofrecen una guia necesaria, para poder utilizar estas herramientas a tu favor! 
           </p>
-          <div className={style.botones}>
-          <button className={styles.item}> Quiero tomar mi turno </button>
-        </div>
+          <span>
+            {" "}
+            Nuestras terapias, te ofrecen una guia necesaria, para poder
+            utilizar estas herramientas a tu favor! Reserva tu turno hoy, y
+            comienza el viaje de transformacion{" "}
+          </span>
+          <Buttons />
         </div>
       </section>
     </div>
