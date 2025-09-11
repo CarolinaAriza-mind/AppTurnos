@@ -1,0 +1,19 @@
+.containerApp {
+    display: flex;
+justify-content: center;
+align-items: center;
+align-content: center;
+margin: 80px;
+}
+
+h1 {
+    margin: 80px;
+    color: #7c8320;
+    font-size: 100px;
+
+}
+
+h4 {
+    color: #7c8320;
+    margin-top: 20px;
+}

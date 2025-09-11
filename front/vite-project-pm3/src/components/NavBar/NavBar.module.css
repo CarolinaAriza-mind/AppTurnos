@@ -31,8 +31,8 @@ ul {
 }
 
 .item:hover {
-  background-color:#ffffff; 
-  color:#7a7310;
+  background-color:#e0a3f0; 
+  color:#000000;
   border: 3px solid #7a7310;
   
 }
