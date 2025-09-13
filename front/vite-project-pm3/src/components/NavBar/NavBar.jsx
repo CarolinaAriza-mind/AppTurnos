@@ -1,13 +1,13 @@
 import style from "./NavBar.module.css";
-import rena from "../../assets/rena.jpg";
+import rena from "../../assets/rena (1).png";
 
 const NavBar = () => {
   const items = [
     "Inicio",
-    "Agenda tu cita",
     "Nuestras sesiones",
     "Registrate aqui",
     "ingresa",
+    "Agenda tu cita",
   ];
 
   return (

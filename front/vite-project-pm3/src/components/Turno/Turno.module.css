@@ -1,20 +1,47 @@
 .app {
-    align-content: center;
-    align-items: center;
-    background-color: #e0a3f0;
-    font-size: 20px;
-    border-radius: 50px;
-    padding: 50px;
-    margin: 30px;
-    text-align: center;
-    border: 5px solid  #7c8320 ;
+  flex-wrap: wrap;
+  background-image: url("../../assets/fractal.webp");
+  border-radius: 50px;
+  padding: 40px;
+  margin: 30px;
+  text-align: center;
+  border: 5px solid #7c8320;
+  transition: filter 0.3s ease;
+  transition: transform 0.3s ease-in-out;
+}
+
+.app:hover {
+  transform: scale(1.1);
 }
 
 .info {
-    color: rgb(0, 0, 0);
-    font-size: 40px;
-    font-family: "Spirit", sans-serif;
-    padding: 2px;
-    line-height: 5px;
+  color: rgb(255, 255, 255);
+  font-size: 25px;
+  font-family: "Albert Sans", sans-serif;
 }
 
+.containerButtonStatus {
+  margin-top: 50px;
+  width: 100%;
+}
+
+.buttonStatus {
+  font-size: 25px;
+  font-family: "Borzoi", sans-serif;
+  border-radius: 30px;
+  padding: 10px;
+  background-color: #7c8320;
+  color: #ffffff;
+  border: 2px solid white;
+}
+
+.active {
+  background-color: #7c8320;
+  color: white;
+}
+
+.cancelled {
+  background-color: #cfcfcf;
+  color: #a0a0a0;
+  cursor: not-allowed;
+}

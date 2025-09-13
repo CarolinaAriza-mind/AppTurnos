@@ -7,6 +7,6 @@ export interface AppointmentDTO {
     appointmentStatus: Status
 }
 export enum Status {
-    active = "active",
-    cancel = "cancelled"
+    active = "activo",
+    cancel = "cancelado"
 }

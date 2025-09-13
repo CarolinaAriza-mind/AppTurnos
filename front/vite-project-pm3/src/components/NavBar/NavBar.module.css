@@ -1,11 +1,8 @@
 .containerNav {
   display: flex;
   justify-content: center;
-  align-content: center;
   align-items: center;
-  
-  background-color: rgb(0, 0, 0);
-  margin-top: 50px;
+  background-image: url("../../assets/fractal.webp");
 }
 
 ul {
@@ -16,30 +13,28 @@ ul {
   justify-content: center;
 }
 
-
-
 .item {
-  background-color: #000000;
-  color:#ffffff;
-  padding: 10px;
+  background-color: black;
+  color: #ffffff;
+  padding: 20px;
   margin: 30px;
-  font-family: "Spirit", sans-serif;
+  font-family: 'Borzoi', sans-serif;
   text-decoration: none;
   border-radius: 30px;
   border: 3px solid #7a7310;
-  font-size: 50px;
+  font-size: 22px;
 }
 
 .item:hover {
-  background-color:#e0a3f0; 
-  color:#000000;
+  color: #7a7310;
   border: 3px solid #7a7310;
-  
+  background-color: white;
 }
 
 .logo {
   width: 150px;
   height: 150px;
-  border-radius: 100%;
+  border-radius: 100px;
   margin: 50px;
+  
 }
