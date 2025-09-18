@@ -44,16 +44,17 @@ animation: slideInLeft 2s ease forwards;
   align-items: center;
   flex-direction: column;
   text-align: center;
+    font-family: 'Borzoi', sans-serif;
   width: 40%;
   font-size: 20px ;
   margin-left: 70px;
   margin-bottom: 70px;
-  animation: slideInRight 2s ease forwards;
+  animation: slideInRight 4s ease forwards;
   animation-delay: 0.3s;
 }
 
 .titles {
   color:#7c8320 ;
-  font-size: 50px;
+  font-size: 40px;
   font-family: "Cinzel Decorative", sans-serif;
 }

@@ -6,7 +6,6 @@
 .title {
   font-family: "Cinzel Decorative", sans-serif;
   margin-top: 80px;
-  margin-bottom: 10px;
   color:#7c8320;
   font-size: 120px;
   text-align: center;
@@ -20,3 +19,6 @@
   margin-bottom: 50px;
 }
 
+body {
+  font-size: 20px;
+}

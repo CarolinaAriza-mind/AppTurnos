@@ -4,19 +4,22 @@ import rena from "../../assets/rena (1).png";
 const NavBar = () => {
   const items = [
     "Inicio",
-    "Nuestras sesiones",
     "Registrate aqui",
-    "ingresa",
+    "Ingresa",
     "Agenda tu cita",
   ];
 
   return (
     <nav className={style.containerNav}>
-      <img className={style.logo} src={rena} alt="Rena" />
+      <div className={style.containerLogo}>
+        <img className={style.logo} src={rena} alt="Rena" />
+      </div>
       <ul>
         {items.map((item, index) => (
           <li key={index}>
-            <a href="#" className={style.item}>{item}</a>
+            <a href="#" className={style.item}>
+              {item}
+            </a>
           </li>
         ))}
       </ul>

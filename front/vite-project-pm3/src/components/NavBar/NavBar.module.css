@@ -3,7 +3,7 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  background-image: url("../../assets/fractal.webp");
+    background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
 }
 
 ul {
@@ -15,27 +15,35 @@ ul {
 }
 
 .item {
-  background-color: black;
-  color: #ffffff;
-  padding: 20px;
+  width: 90%;
+  padding: 14px;
+   background: linear-gradient(to right, #f5f5dc, #ffd70066);
+  color: #000;
+  padding: 10px;
   margin: 30px;
-  font-family: 'Borzoi', sans-serif;
+ font-family: "VARUNA", sans-serif;
   text-decoration: none;
   border-radius: 30px;
   border: 3px solid #7a7310;
-  font-size: 22px;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .item:hover {
-  color: #7a7310;
+  color: #000000;
   border: 3px solid #7a7310;
-  background-color: white;
+    background: linear-gradient(to right,#ffd70066, #f5f5dc);
+}
+
+.containerLogo {
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 120px;
 }
 
 .logo {
   width: 150px;
   height: 150px;
   border-radius: 100px;
-  margin: 50px;
-  
+  margin: 10px;
 }

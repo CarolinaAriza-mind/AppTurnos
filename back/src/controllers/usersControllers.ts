@@ -83,6 +83,7 @@ export const loginUserController = async (
     });
     return res.status(200).json({
       login: true,
+      message: "Usuario logueado con exito",
       user: userFound,
     });
   } catch (err) {

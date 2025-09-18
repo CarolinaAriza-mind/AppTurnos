@@ -1,11 +1,15 @@
 .app {
-  flex-wrap: wrap;
-  background-image: url("../../assets/fractal.webp");
+   background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+   border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 50px;
-  padding: 30px;
-  margin: 30px;
+  padding: 10px;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
   text-align: center;
-  border: 5px solid #7c8320;
   transition: filter 0.3s ease;
   transition: transform 0.3s ease-in-out;
 }
@@ -16,28 +20,32 @@
 
 .info {
   color: rgb(255, 255, 255);
-  font-size: 25px;
+  font-size: 20px;
   font-family: "Albert Sans", sans-serif;
 }
 
 .containerButtonStatus {
-  margin-top: 50px;
+  margin-top: 10px;
   width: 100%;
 }
 
 .buttonStatus {
-  font-size: 25px;
+  font-size: 15px;
   font-family: "Borzoi", sans-serif;
+  font-weight: 600;
   border-radius: 30px;
-  padding: 10px;
-  background-color: #7c8320;
-  color: #ffffff;
+  padding: 5px;
   border: 2px solid white;
+  margin-bottom: 20px;
 }
 
 .active {
-  background-color: #7c8320;
-  color: white;
+   background: linear-gradient(to right, #f5f5dc, #ffd70066);
+  color: #000;
+}
+
+.active:hover {
+     background: linear-gradient(to right,#ffd70066, #f5f5dc);
 }
 
 .cancelled {
