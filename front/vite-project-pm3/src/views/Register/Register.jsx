@@ -1,10 +1,14 @@
-import axios from "axios";
 import { validateFormRegister } from "../../helpers/validateReg";
 import style from "./Register.module.css";
 import { useFormik } from "formik";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { UsersContext } from "../../context/UsersContext";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
+ const {registerUser} = useContext(UsersContext)
+const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -23,69 +27,52 @@ const Register = () => {
       username: "Se requiere el nombre de usuario que elijas",
       password: "Se requiere Contraseña",
     },
-    onSubmit: (values) => {
-      axios
-        .post("http://localhost:3001/users/register", values)
-        .then((res) => {
-          if (res.status === 201) {
+    onSubmit: async(values) => {
+      try {
+ await registerUser(values)
+   
             Swal.fire({
               position: "top-end",
               icon: "success",
               iconColor: "#08b402ff",
               title: "Usuario Registrado Correctamente",
-              showConfirmButton: false,
-              timer: 2000,
-              color: "#000000ff",
-              background: "#ffd70066",
+              color: "#ffffffff",
+              background: "#6e5f05ff",
             });
+            navigate("/Login");
           }
-          localStorage.setItem("user", JSON.stringify(res.data.use))
-          console.log(res);
-        })
-
-        .catch((err) => {
+      catch(err) {
           if (err.response.data.msg.includes("username")) {
             Swal.fire({
               position: "top-end",
               icon: "error",
               iconColor: "#ff0303",
               title: `El username ya existe = ${formik.values.username} , Intenta con otro Nombre de Usuario`,
-              showConfirmButton: false,
-              timer: 2500,
               color: "#000000ff",
               background: "#f797daff",
-            })
-             console.log(err);
-          }
-
-          else if (err.response.data.msg.includes("email")) {
+            });
+          
+          } else if (err.response.data.msg.includes("email")) {
             Swal.fire({
               position: "top-end",
               icon: "error",
               iconColor: "#ff0303",
               title: `Email ya registrado = ${formik.values.email}, Intenta con otro email`,
-              showConfirmButton: false,
-              timer: 2500,
               color: "#000000ff",
               background: "#f797daff",
-            })
-          }
-
-         else if (err.response.data.msg.includes("nDni")) {
+            });
+          } else if (err.response.data.msg.includes("nDni")) {
             Swal.fire({
               position: "top-end",
               icon: "error",
               iconColor: "#ff0303",
               title: `El numero de DNI ya esta registrado = ${formik.values.nDni}, Intenta con otro numero de Documento`,
               text: "Intentelo de nuevo",
-              showConfirmButton: false,
-              timer: 2500,
               color: "#000000ff",
               background: "#f797daff",
-            })
-
+            });
           }
-        });
+        }
     },
   });
 
@@ -93,7 +80,7 @@ const Register = () => {
     <div className={style.formContainer}>
       <form onSubmit={formik.handleSubmit}>
         <h2 className={style.title}>Registrate aqui</h2>
-        <div >
+        <div>
           <label>Nombre </label>
           <input
             type="text"
@@ -105,7 +92,7 @@ const Register = () => {
             <label className={style.errorMessage}>{formik.errors.name}</label>
           ) : null}
         </div>
-        <div >
+        <div>
           <label>Email </label>
           <input
             type="text"
@@ -117,7 +104,7 @@ const Register = () => {
             <label className={style.errorMessage}>{formik.errors.email}</label>
           ) : null}
         </div>
-        <div >
+        <div>
           <label>Fecha de nacimiento </label>
           <input
             type="date"
@@ -131,7 +118,7 @@ const Register = () => {
             </label>
           ) : null}
         </div>
-        <div >
+        <div>
           <label>DNI </label>
           <input
             type="number"
@@ -184,6 +171,8 @@ const Register = () => {
         >
           Registrarme
         </button>
+<br />
+<label >Ya tienes una cuenta? <Link to= "/Login">Ingresa</Link></label>
       </form>
     </div>
   );

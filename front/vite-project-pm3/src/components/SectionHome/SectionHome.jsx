@@ -3,6 +3,7 @@ import style from "./SectionHome.module.css"
 
 const SectionHome = () => {
     return(
+      
          <section className={style.seccionPresentacion}>
         <div>
           <img

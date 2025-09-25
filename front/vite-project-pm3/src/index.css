@@ -12,6 +12,14 @@ body {
 
 main {
   position: relative;
-  height: 93vh;
+  height: 150vh;
   overflow: hidden;
+}
+
+.containerMain {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+    background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
 }

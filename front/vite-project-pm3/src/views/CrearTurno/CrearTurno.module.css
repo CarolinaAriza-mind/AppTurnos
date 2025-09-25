@@ -1,0 +1,87 @@
+.formContainer {
+  max-width: 430px;
+  margin: 100px auto;
+  padding: 40px;
+  background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  align-content: center;
+}
+
+.title {
+  color: #7c8320;
+  font-family: "Cinzel Decorative", sans-serif;
+  text-align: center;
+  margin-bottom: 60px;
+  font-size: 35px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.formGroup {
+  margin-bottom: 24px;
+}
+
+label {
+  display: block;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 1px;
+  margin-top: 20px;
+  letter-spacing: 0.5px;
+}
+
+input {
+  width: 90%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #222;
+  color: #fff;
+  font-size: 16px;
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
+  transition: box-shadow 0.3s ease;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 8px #ffd70066;
+}
+
+input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.errorMessage {
+  color: #ffd70066;
+  font-size: 16px;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+button {
+  width: 90%;
+  padding: 14px;
+  background: linear-gradient(to right, #f5f5dc, #ffd70066);
+  color: #000;
+  font-family: "VARUNA", sans-serif;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  align-content: center;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+button:hover {
+  background: linear-gradient(to right, #ffd70066, #f5f5dc);
+}

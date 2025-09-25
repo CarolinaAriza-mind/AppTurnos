@@ -1,12 +1,39 @@
+import { useContext } from "react";
 import style from "./Turno.module.css";
-const Turno = ({ id, date, time, appointmentStatus, onCancel, loading}) => {
-const IsCancelled = appointmentStatus === "cancelado";
+import { UsersContext } from "../../context/UsersContext";
+import Swal from "sweetalert2";
+
+const Turno = ({ id, date, time, appointmentStatus }) => {
+  const { cancelUserApp } = useContext(UsersContext);
+
+  const handleCancel = async () => {
+    try {
+      await cancelUserApp(id);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        iconColor: "#09ff00ff",
+        title: "El turno ha sido cancelado con exito",
+        color: "#ffffffff",
+        background: "#6e5f05ff",
+      });
+    } catch (err) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        iconColor: "#ff0303",
+        title: "Error al cancelar el turno",
+        color: "#000000ff",
+        background: "#f797daff",
+      });
+      console.error("Error al cancelar turno:", err);
+    }
+  };
 
   return (
     <div className={style.app}>
       <p className={style.info}>
-        <strong>Turno </strong>
-        #{id}
+        <strong>Turno</strong> #{id}
       </p>
       <p className={style.info}>
         <strong>Fecha:</strong> {date}
@@ -18,11 +45,13 @@ const IsCancelled = appointmentStatus === "cancelado";
         <strong>Estado:</strong> {appointmentStatus}
       </p>
       <div className={style.containerButtonStatus}>
-      <button  className={`${style.buttonStatus} ${
-            IsCancelled ? style.cancelled : style.active
-          }`}
-          disabled={IsCancelled || loading}
-          onClick={() => onCancel(id)}> {loading === id ? "Cancelando..." : IsCancelled ? "Cancelado" : "Cancelar"}</button>
+        <button
+          className={style.cancelButton}
+          onClick={handleCancel}
+          disabled={appointmentStatus === "Cancelado"}
+        >
+          Cancelar
+        </button>
       </div>
     </div>
   );
