@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "dt": "ts-node src/services/appointmentServices.ts",
-    "start": "nodemon",
+    "start": "ts-node src/index.ts",
     "lint": "eslint . --ext .ts"
   },
   "keywords": [],

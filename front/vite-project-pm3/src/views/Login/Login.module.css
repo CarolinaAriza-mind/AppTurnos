@@ -60,7 +60,7 @@ input::placeholder {
 }
 
 .errorMessage {
-  color: #ffd70066;
+  color: #ff5e00bb;
   font-size: 16px;
   margin-top: 6px;
   font-style: italic;
