@@ -12,6 +12,6 @@ exports.transporter = nodemailer_1.default.createTransport({
     secure: false,
     auth: {
         user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PAS,
+        pass: process.env.SMTP_PASS,
     },
 });
