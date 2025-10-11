@@ -1,0 +1,6 @@
+dist 
+dist/
+*.js
+*.js.map
+
+.env
