@@ -1,25 +1,99 @@
 :root {
-  color: #ffffff;
   font-size: 15px;
-  font-family: "VARUNA", sans-serif;
+  background-color: black;
+  font-family: 'VARUNA';
   text-align: center;
-}
-
-body {
-  background-color: rgb(0, 0, 0);
-  height: 100vh;
-}
-
-main {
-  position: relative;
-  height: 150vh;
-  overflow: hidden;
-}
-
-.containerMain {
-  display: flex;
-  width: 100%;
+  color:white;
   justify-content: center;
-  align-items: center;
-    background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+}
+
+
+@media (max-width: 1024px) {
+  :root {
+    font-size: 14px;
+  }
+
+  .title {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+
+  .formContainer {
+    margin: 60px auto;
+    padding: 30px;
+    width: 90%;
+  }
+
+  .containerApp {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 40px;
+    justify-content: center;
+  }
+
+  .textoPresentacion {
+    width: 80%;
+    font-size: 18px;
+    margin-left: 0;
+  }
+
+  .imgPresentacion {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+  .title {
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+
+  .formContainer {
+    margin: 40px auto;
+    padding: 20px;
+    width: 95%;
+  }
+
+  input,
+  button {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  label {
+    font-size: 16px;
+  }
+
+  .containerApp {
+    grid-template-columns: 1fr;
+    margin: 20px;
+    justify-content: center;
+  }
+
+  .textoPresentacion {
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .imgPresentacion {
+    width: 100%;
+    height: auto;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .item {
+    font-size: 16px;
+    padding: 12px;
+    margin: 10px;
+  }
+
+  .logo {
+    width: 100px;
+    height: 100px;
+  }
 }

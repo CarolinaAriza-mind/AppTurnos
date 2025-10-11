@@ -23,6 +23,10 @@
   margin-bottom: 24px;
 }
 
+span {
+  color: white;
+}
+
 label {
   display: block;
   color: #ffffff;
@@ -59,7 +63,7 @@ input::placeholder {
 }
 
 .errorMessage {
-  color: #ffd70066;
+  color: #ff5e00bb;
   font-size: 16px;
   margin-top: 6px;
   font-style: italic;

@@ -14,12 +14,20 @@ export const validateFormRegister = (input) => {
 
   if (!input.birthdate.trim()) {
     errors.birthdate = "Se requiere tu fecha de nacimiento";
+  } else {
+    const birthDate = new Date(input.birthdate);
+    const today = new Date();
+    if (birthDate > today) {
+      errors.birthdate = "La fecha de nacimiento no puede ser futura";
+    }
   }
+
   if (!input.nDni) {
-    errors.nDni = "Se requiere tu numero de documento";
-  } else if(input.nDni.length > 8) {
-    errors.nDni = "El numero de identidad debe contener hasta 8 caracteres";
-  }
+  errors.nDni = "Se requiere tu número de documento";
+} else if (String(input.nDni).length > 8) {
+  errors.nDni = "El número de identidad debe contener hasta 8 caracteres";
+}
+
   if (!input.username.trim()) {
     errors.username = "Se requiere nombre de usuario";
   } else if (!/^[a-zA-Z0-9]+$/.test(input.username)) {

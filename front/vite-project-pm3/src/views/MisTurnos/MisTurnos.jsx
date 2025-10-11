@@ -13,9 +13,9 @@ const MisTurnos = () => {
   return (
     <div>
       <h1>MIS TURNOS</h1>
-      <h4>
+      <h2>
         Aquí encontrarás el listado de los turnos que has tomado o cancelado
-      </h4>
+      </h2>
       <section className={style.containerApp}>
         {userAppointments?.length > 0 ? (
           userAppointments.map((appointments) => (
@@ -28,7 +28,7 @@ const MisTurnos = () => {
             />
           ))
         ) : (
-          <h1>No hay turnos para mostrar</h1>
+          <h3>No hay turnos para mostrar</h3>
         )}
       </section>
     </div>

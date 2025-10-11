@@ -45,6 +45,7 @@ animation: slideInLeft 2s ease forwards;
   flex-direction: column;
   text-align: center;
     font-family: 'Borzoi', sans-serif;
+    color: white;
   width: 40%;
   font-size: 20px ;
   margin-left: 70px;

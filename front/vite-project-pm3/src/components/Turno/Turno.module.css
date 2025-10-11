@@ -54,3 +54,14 @@
   color: #a0a0a0;
   cursor: not-allowed;
 }
+
+.statusActivo {
+  color: #09ff00ff; 
+  font-weight: bold;
+}
+
+.statusCancelado {
+  color: #ff0303; 
+  font-weight: bold;
+}
+

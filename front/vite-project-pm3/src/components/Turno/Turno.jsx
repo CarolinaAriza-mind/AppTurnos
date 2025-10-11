@@ -42,15 +42,27 @@ const Turno = ({ id, date, time, appointmentStatus }) => {
         <strong>Hora:</strong> {time}
       </p>
       <p className={style.info}>
-        <strong>Estado:</strong> {appointmentStatus}
+        <strong>Estado:</strong>{" "}
+        <span
+          className={
+            appointmentStatus === "cancelado"
+              ? style.statusCancelado
+              : style.statusActivo
+          }
+        >
+          {appointmentStatus}
+        </span>
       </p>
+
       <div className={style.containerButtonStatus}>
         <button
-          className={style.cancelButton}
+          className={`${style.buttonStatus} ${
+            appointmentStatus === "cancelado" ? style.cancelled : style.active
+          }`}
           onClick={handleCancel}
-          disabled={appointmentStatus === "Cancelado"}
+          disabled={appointmentStatus === "cancelado"}
         >
-          Cancelar
+          {appointmentStatus === "cancelado" ? "Cancelado" : "Cancelar"}
         </button>
       </div>
     </div>
