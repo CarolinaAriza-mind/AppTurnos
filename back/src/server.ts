@@ -1,5 +1,5 @@
 import express, { Application } from "express";
-import router from "./routes/indexRouter";
+import router from "./routes/indexRouter.js";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import cors from "cors";

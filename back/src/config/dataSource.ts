@@ -5,9 +5,9 @@ import {
   DB_PASSWORD,
   DB_PORT,
   DB_USERNAME,
-} from "./envs";
-import { User } from "../Entities/UserEntity";
-import { Credential } from "../Entities/CredentialEntity";
+} from "./envs.js";
+import { User } from "../Entities/UserEntity.js";
+import { Credential } from "../Entities/CredentialEntity.js";
 
 export const appDataSource = new DataSource({
   type: "postgres",

@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
-import { UserRegisterDTO } from "../DTO/UserDTO";
+import { UserRegisterDTO } from "../DTO/UserDTO.js";
 import {
   AllUsersServices,
   createNewUserService,
   returnUserByIdServices,
-} from "../services/userServices";
-import { PostgresError } from "../DTO/ErrorDTO";
-import { authNewCredentials } from "../services/credentialServices";
-import { CredentialDTO } from "../DTO/CredentialsDTO";
-import { userModel } from "../config/dataSource";
-import { User } from "../Entities/UserEntity";
-import { sendWelcomeEmail } from "../services/mailerServices";
+} from "../services/userServices.js";
+import { PostgresError } from "../DTO/ErrorDTO.js";
+import { authNewCredentials } from "../services/credentialServices.js";
+import { CredentialDTO } from "../DTO/CredentialsDTO.js";
+import { userModel } from "../config/dataSource.js";
+import { User } from "../Entities/UserEntity.js";
+import { sendWelcomeEmail } from "../services/mailerServices.js";
 
 export const getUserController = async (req: Request, res: Response) => {
   try {

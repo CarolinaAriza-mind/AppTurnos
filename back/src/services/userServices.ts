@@ -1,8 +1,8 @@
-import { appDataSource, userModel } from "../config/dataSource";
-import { UserRegisterDTO } from "../DTO/UserDTO";
-import { Credential } from "../Entities/CredentialEntity";
-import { User } from "../Entities/UserEntity";
-import { createNewCredentials } from "./credentialServices";
+import { appDataSource, userModel } from "../config/dataSource.js";
+import { UserRegisterDTO } from "../DTO/UserDTO.js";
+import { Credential } from "../Entities/CredentialEntity.js";
+import { User } from "../Entities/UserEntity.js";
+import { createNewCredentials } from "./credentialServices.js";
 
 export const createNewUserService = async (
   user: UserRegisterDTO

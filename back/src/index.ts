@@ -1,7 +1,7 @@
-import server from "./server";
-import { PORT } from "./config/envs";
+import server from "./server.js";
+import { PORT } from "./config/envs.js";
 import "reflect-metadata";
-import { appDataSource } from "./config/dataSource";
+import { appDataSource } from "./config/dataSource.js";
 
 appDataSource.initialize()
 .then(() => {

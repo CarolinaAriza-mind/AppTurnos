@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Credential } from "./CredentialEntity";
-import { Appointment } from "./AppointmentEntitiy";
+import { Credential } from "./CredentialEntity.js";
+import { Appointment } from "./AppointmentEntitiy.js";
 
 @Entity("users")
 export class User {

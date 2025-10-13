@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,51 +7,58 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
-const typeorm_1 = require("typeorm");
-const CredentialEntity_1 = require("./CredentialEntity");
-const AppointmentEntitiy_1 = require("./AppointmentEntitiy");
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Credential } from "./CredentialEntity.js";
+import { Appointment } from "./AppointmentEntitiy.js";
 let User = class User {
+    id;
+    name;
+    email;
+    birthdate;
+    nDni;
+    credentials;
+    appointment;
+    creatAt;
+    upDate;
 };
-exports.User = User;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
 ], User.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "varchar", length: 25, nullable: false }),
+    Column({ type: "varchar", length: 25, nullable: false }),
     __metadata("design:type", String)
 ], User.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "varchar", length: 50, nullable: false, unique: true }),
+    Column({ type: "varchar", length: 50, nullable: false, unique: true }),
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "date", nullable: false }),
+    Column({ type: "date", nullable: false }),
     __metadata("design:type", Date)
 ], User.prototype, "birthdate", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "int", nullable: false, unique: true }),
+    Column({ type: "int", nullable: false, unique: true }),
     __metadata("design:type", Number)
 ], User.prototype, "nDni", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => CredentialEntity_1.Credential, { cascade: true }),
-    (0, typeorm_1.JoinColumn)(),
-    __metadata("design:type", CredentialEntity_1.Credential)
+    OneToOne(() => Credential, { cascade: true }),
+    JoinColumn(),
+    __metadata("design:type", Credential)
 ], User.prototype, "credentials", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => AppointmentEntitiy_1.Appointment, appointments => appointments.user),
+    OneToMany(() => Appointment, appointments => appointments.user),
     __metadata("design:type", Array)
 ], User.prototype, "appointment", void 0);
 __decorate([
-    (0, typeorm_1.CreateDateColumn)(),
+    CreateDateColumn(),
     __metadata("design:type", Date)
 ], User.prototype, "creatAt", void 0);
 __decorate([
-    (0, typeorm_1.UpdateDateColumn)(),
+    UpdateDateColumn(),
     __metadata("design:type", Date)
 ], User.prototype, "upDate", void 0);
-exports.User = User = __decorate([
-    (0, typeorm_1.Entity)("users")
+User = __decorate([
+    Entity("users")
 ], User);
+export { User };

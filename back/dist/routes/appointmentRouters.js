@@ -1,10 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const appointmentControllers_1 = require("../controllers/appointmentControllers");
-const appointmentsRouter = (0, express_1.Router)();
-appointmentsRouter.get("/", (req, res) => (0, appointmentControllers_1.getAppointmentsUserController)(req, res));
-appointmentsRouter.get("/:id", (req, res) => (0, appointmentControllers_1.getDetailAppointmentController)(req, res));
-appointmentsRouter.post("/schedule", (req, res) => (0, appointmentControllers_1.SchedulerAppointmentController)(req, res));
-appointmentsRouter.put("/cancel/:id", (req, res) => (0, appointmentControllers_1.ChangeStatusAppointmentController)(req, res));
-exports.default = appointmentsRouter;
+import { Router } from "express";
+import { ChangeStatusAppointmentController, getAppointmentsUserController, getDetailAppointmentController, SchedulerAppointmentController, } from "../controllers/appointmentControllers.js";
+const appointmentsRouter = Router();
+appointmentsRouter.get("/", (req, res) => getAppointmentsUserController(req, res));
+appointmentsRouter.get("/:id", (req, res) => getDetailAppointmentController(req, res));
+appointmentsRouter.post("/schedule", (req, res) => SchedulerAppointmentController(req, res));
+appointmentsRouter.put("/cancel/:id", (req, res) => ChangeStatusAppointmentController(req, res));
+export default appointmentsRouter;

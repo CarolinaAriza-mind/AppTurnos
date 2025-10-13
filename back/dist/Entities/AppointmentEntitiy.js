@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,42 +7,47 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Appointment = void 0;
-const typeorm_1 = require("typeorm");
-const AppointmentDTO_1 = require("../DTO/AppointmentDTO");
-const UserEntity_1 = require("./UserEntity");
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Status } from "../DTO/AppointmentDTO.js";
+import { User } from "./UserEntity.js";
 let Appointment = class Appointment {
+    id;
+    date;
+    time;
+    user;
+    appointmentStatus;
+    creatAt;
+    upDate;
 };
-exports.Appointment = Appointment;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
 ], Appointment.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "date", nullable: false }),
+    Column({ type: "date", nullable: false }),
     __metadata("design:type", Date)
 ], Appointment.prototype, "date", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "varchar", length: 5, nullable: false }),
+    Column({ type: "varchar", length: 5, nullable: false }),
     __metadata("design:type", String)
 ], Appointment.prototype, "time", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => UserEntity_1.User, user => user.appointment, { nullable: false }),
-    __metadata("design:type", UserEntity_1.User)
+    ManyToOne(() => User, user => user.appointment, { nullable: false }),
+    __metadata("design:type", User)
 ], Appointment.prototype, "user", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "varchar", length: 10, nullable: false, default: AppointmentDTO_1.Status.active }),
+    Column({ type: "varchar", length: 10, nullable: false, default: Status.active }),
     __metadata("design:type", String)
 ], Appointment.prototype, "appointmentStatus", void 0);
 __decorate([
-    (0, typeorm_1.CreateDateColumn)(),
+    CreateDateColumn(),
     __metadata("design:type", Date)
 ], Appointment.prototype, "creatAt", void 0);
 __decorate([
-    (0, typeorm_1.UpdateDateColumn)(),
+    UpdateDateColumn(),
     __metadata("design:type", Date)
 ], Appointment.prototype, "upDate", void 0);
-exports.Appointment = Appointment = __decorate([
-    (0, typeorm_1.Entity)("appointment")
+Appointment = __decorate([
+    Entity("appointment")
 ], Appointment);
+export { Appointment };

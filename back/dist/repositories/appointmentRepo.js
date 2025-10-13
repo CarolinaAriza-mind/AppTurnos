@@ -1,10 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.appointmentModel = void 0;
-const dataSource_1 = require("../config/dataSource");
-const AppointmentEntitiy_1 = require("../Entities/AppointmentEntitiy");
-exports.appointmentModel = dataSource_1.appDataSource
-    .getRepository(AppointmentEntitiy_1.Appointment)
+import { appDataSource } from "../config/dataSource.js";
+import { Appointment } from "../Entities/AppointmentEntitiy.js";
+export const appointmentModel = appDataSource
+    .getRepository(Appointment)
     .extend({
     validadAppointment: function (date, time) {
         const [hourStr, minuteStr] = time.split(":");

@@ -1,7 +1,7 @@
-import { AppointmentDTO, Status } from "../DTO/AppointmentDTO";
-import { Appointment } from "../Entities/AppointmentEntitiy";
-import { appointmentModel } from "../repositories/appointmentRepo";
-import { returnUserByIdServices } from "./userServices";
+import { AppointmentDTO, Status } from "../DTO/AppointmentDTO.js";
+import { Appointment } from "../Entities/AppointmentEntitiy.js";
+import { appointmentModel } from "../repositories/appointmentRepo.js";
+import { returnUserByIdServices } from "./userServices.js";
 
 export const everyAppointmentService = async (): Promise<
   Appointment[] | undefined

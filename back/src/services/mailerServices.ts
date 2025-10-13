@@ -1,4 +1,4 @@
-import { transporter } from "../config/mailer";
+import { transporter } from "../config/mailer.js";
 
 export const sendWelcomeEmail = async (email: string, name: string) => {
 try {

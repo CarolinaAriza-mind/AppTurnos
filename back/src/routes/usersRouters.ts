@@ -4,9 +4,9 @@ import {
   getUserController,
   loginUserController,
   registerUserController,
-} from "../controllers/usersControllers";
-import { UserRegisterDTO } from "../DTO/UserDTO";
-import { CredentialDTO } from "../DTO/CredentialsDTO";
+} from "../controllers/usersControllers.js";
+import { UserRegisterDTO } from "../DTO/UserDTO.js";
+import { CredentialDTO } from "../DTO/CredentialsDTO.js";
 
 const userRouter: Router = Router();
 

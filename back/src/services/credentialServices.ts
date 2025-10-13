@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
-import { Credential } from "../Entities/CredentialEntity";
+import { Credential } from "../Entities/CredentialEntity.js";
 import { EntityManager } from "typeorm";
-import { credentialModel } from "../config/dataSource";
+import { credentialModel } from "../config/dataSource.js";
 
 export const createNewCredentials = async (
   entityManager: EntityManager,

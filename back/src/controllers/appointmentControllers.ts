@@ -1,18 +1,18 @@
 import { Request, Response } from "express";
-import { AppointmentDTO } from "../DTO/AppointmentDTO";
+import { AppointmentDTO } from "../DTO/AppointmentDTO.js";
 import {
   createNewAppointment,
   everyAppointmentService,
   getAppointmentByIdService,
   statusAppointmentService,
-} from "../services/appointmentServices";
-import { PostgresError } from "../DTO/ErrorDTO";
+} from "../services/appointmentServices.js";
+import { PostgresError } from "../DTO/ErrorDTO.js";
 import {
   sendAppointmentConfirmationEmail,
   sendCancellationEmail,
-} from "../services/mailerServices";
-import { appointmentModel } from "../repositories/appointmentRepo";
-import { returnUserByIdServices } from "../services/userServices";
+} from "../services/mailerServices.js";
+import { appointmentModel } from "../repositories/appointmentRepo.js";
+import { returnUserByIdServices } from "../services/userServices.js";
 
 export const getAppointmentsUserController = async (
   req: Request,

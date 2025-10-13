@@ -1,24 +1,12 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChangeStatusAppointmentController = exports.SchedulerAppointmentController = exports.getDetailAppointmentController = exports.getAppointmentsUserController = void 0;
-const appointmentServices_1 = require("../services/appointmentServices");
-const mailerServices_1 = require("../services/mailerServices");
-const appointmentRepo_1 = require("../repositories/appointmentRepo");
-const userServices_1 = require("../services/userServices");
-const getAppointmentsUserController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+import { createNewAppointment, everyAppointmentService, getAppointmentByIdService, statusAppointmentService, } from "../services/appointmentServices.js";
+import { sendAppointmentConfirmationEmail, sendCancellationEmail, } from "../services/mailerServices.js";
+import { appointmentModel } from "../repositories/appointmentRepo.js";
+import { returnUserByIdServices } from "../services/userServices.js";
+export const getAppointmentsUserController = async (req, res) => {
     try {
         res.status(200).json({
             msagge: "Lista de todos los turnos",
-            data: yield (0, appointmentServices_1.everyAppointmentService)(),
+            data: await everyAppointmentService(),
         });
     }
     catch (err) {
@@ -31,12 +19,11 @@ const getAppointmentsUserController = (req, res) => __awaiter(void 0, void 0, vo
                 : "Error desconocido",
         });
     }
-});
-exports.getAppointmentsUserController = getAppointmentsUserController;
-const getDetailAppointmentController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+};
+export const getDetailAppointmentController = async (req, res) => {
     try {
         const id = parseInt(req.params.id, 10);
-        const app = yield (0, appointmentServices_1.getAppointmentByIdService)(id);
+        const app = await getAppointmentByIdService(id);
         if (!app)
             throw new Error("Este turno no existe");
         const formattedDate = new Date(app.date).toISOString().split("T")[0];
@@ -62,14 +49,13 @@ const getDetailAppointmentController = (req, res) => __awaiter(void 0, void 0, v
                 : "Error al obtener un turno",
         });
     }
-});
-exports.getDetailAppointmentController = getDetailAppointmentController;
-const SchedulerAppointmentController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+};
+export const SchedulerAppointmentController = async (req, res) => {
     try {
-        const newAppoint = yield (0, appointmentServices_1.createNewAppointment)(req.body);
-        const user = yield (0, userServices_1.returnUserByIdServices)(req.body.userID);
+        const newAppoint = await createNewAppointment(req.body);
+        const user = await returnUserByIdServices(req.body.userID);
         const formattedDate = new Date(newAppoint.date).toISOString().split("T")[0];
-        yield (0, mailerServices_1.sendAppointmentConfirmationEmail)(user.email, user.name, formattedDate, newAppoint.time);
+        await sendAppointmentConfirmationEmail(user.email, user.name, formattedDate, newAppoint.time);
         res.status(201).json({
             msagge: "Nuevo turno agendado con exito",
             data: newAppoint,
@@ -85,20 +71,19 @@ const SchedulerAppointmentController = (req, res) => __awaiter(void 0, void 0, v
                 : "Error al agendar el turno",
         });
     }
-});
-exports.SchedulerAppointmentController = SchedulerAppointmentController;
-const ChangeStatusAppointmentController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+};
+export const ChangeStatusAppointmentController = async (req, res) => {
     try {
         const id = parseInt(req.params.id, 10);
-        const turno = yield appointmentRepo_1.appointmentModel.findOne({
+        const turno = await appointmentModel.findOne({
             where: { id },
             relations: ["user"],
         });
         if (!turno)
             throw new Error("No se encontró el turno");
-        yield (0, appointmentServices_1.statusAppointmentService)(id);
+        await statusAppointmentService(id);
         const formattedDate = new Date(turno.date).toISOString().split("T")[0];
-        yield (0, mailerServices_1.sendCancellationEmail)(turno.user.email, turno.user.name, formattedDate, turno.time);
+        await sendCancellationEmail(turno.user.email, turno.user.name, formattedDate, turno.time);
         res.status(200).json({
             msagge: "Turno Cancelado con exito",
             data: {
@@ -121,5 +106,4 @@ const ChangeStatusAppointmentController = (req, res) => __awaiter(void 0, void 0
                 : "No se pudo cancelar el turno",
         });
     }
-});
-exports.ChangeStatusAppointmentController = ChangeStatusAppointmentController;
+};

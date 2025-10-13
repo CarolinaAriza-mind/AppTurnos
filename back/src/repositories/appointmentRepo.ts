@@ -1,5 +1,5 @@
-import { appDataSource } from "../config/dataSource";
-import { Appointment } from "../Entities/AppointmentEntitiy";
+import { appDataSource } from "../config/dataSource.js";
+import { Appointment } from "../Entities/AppointmentEntitiy.js";
 
 export const appointmentModel = appDataSource
   .getRepository(Appointment)

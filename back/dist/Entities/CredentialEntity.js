@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,37 +7,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Credential = void 0;
-const typeorm_1 = require("typeorm");
-const UserEntity_1 = require("./UserEntity");
+import { Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { User } from "./UserEntity.js";
 let Credential = class Credential {
+    id;
+    username;
+    password;
+    user;
+    creatAt;
+    upDate;
 };
-exports.Credential = Credential;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
 ], Credential.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "varchar", length: 15, nullable: false, unique: true }),
+    Column({ type: "varchar", length: 15, nullable: false, unique: true }),
     __metadata("design:type", String)
 ], Credential.prototype, "username", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "varchar", length: 100, nullable: false }),
+    Column({ type: "varchar", length: 100, nullable: false }),
     __metadata("design:type", String)
 ], Credential.prototype, "password", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => UserEntity_1.User),
-    __metadata("design:type", UserEntity_1.User)
+    OneToOne(() => User),
+    __metadata("design:type", User)
 ], Credential.prototype, "user", void 0);
 __decorate([
-    (0, typeorm_1.CreateDateColumn)(),
+    CreateDateColumn(),
     __metadata("design:type", Date)
 ], Credential.prototype, "creatAt", void 0);
 __decorate([
-    (0, typeorm_1.UpdateDateColumn)(),
+    UpdateDateColumn(),
     __metadata("design:type", Date)
 ], Credential.prototype, "upDate", void 0);
-exports.Credential = Credential = __decorate([
-    (0, typeorm_1.Entity)()
+Credential = __decorate([
+    Entity()
 ], Credential);
+export { Credential };

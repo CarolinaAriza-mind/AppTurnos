@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { User } from "./UserEntity";
+import { User } from "./UserEntity.js";
 
 @Entity()
 export class Credential {

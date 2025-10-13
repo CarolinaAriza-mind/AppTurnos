@@ -4,8 +4,8 @@ import {
   getAppointmentsUserController,
   getDetailAppointmentController,
   SchedulerAppointmentController,
-} from "../controllers/appointmentControllers";
-import { AppointmentDTO } from "../DTO/AppointmentDTO";
+} from "../controllers/appointmentControllers.js";
+import { AppointmentDTO } from "../DTO/AppointmentDTO.js";
 
 const appointmentsRouter: Router = Router();
 
