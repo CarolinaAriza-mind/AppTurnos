@@ -1,35 +1,40 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Credential } from "./CredentialEntity.js";
-import { Appointment } from "./AppointmentEntitiy.js";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
 @Entity("users")
 export class User {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-@PrimaryGeneratedColumn() 
-id: number
+  @Column({ type: "varchar", length: 25, nullable: false })
+  name: string;
 
-@Column({type: "varchar", length: 25, nullable: false})
-name: string
+  @Column({ type: "varchar", length: 50, nullable: false, unique: true })
+  email: string;
 
-@Column({type: "varchar", length: 50, nullable: false, unique:true})
-email: string
+  @Column({ type: "date", nullable: false })
+  birthdate: Date;
 
-@Column({type: "date", nullable: false})
-birthdate: Date
+  @Column({ type: "int", nullable: false, unique: true })
+  nDni: number;
 
-@Column({type: "int", nullable: false, unique:true})
-nDni: number
+ @OneToOne("Credential", "user", { lazy: true, cascade: true })
+credential!: Promise<any>;
 
-@OneToOne(() => Credential, { cascade: true})
-@JoinColumn()
-credentials: Credential
+ @OneToMany("Appointment", "user")
+appointments: any[];
 
-@OneToMany(() => Appointment, appointments => appointments.user)
-appointment: Appointment[]
+  @CreateDateColumn()
+  creatAt: Date;
 
-@CreateDateColumn()
-creatAt: Date
-
-@UpdateDateColumn()
-upDate: Date
+  @UpdateDateColumn()
+  upDate: Date;
 }

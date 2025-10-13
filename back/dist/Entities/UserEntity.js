@@ -7,19 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Credential } from "./CredentialEntity.js";
-import { Appointment } from "./AppointmentEntitiy.js";
+import { Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn, } from "typeorm";
 let User = class User {
-    id;
-    name;
-    email;
-    birthdate;
-    nDni;
-    credentials;
-    appointment;
-    creatAt;
-    upDate;
 };
 __decorate([
     PrimaryGeneratedColumn(),
@@ -42,14 +31,13 @@ __decorate([
     __metadata("design:type", Number)
 ], User.prototype, "nDni", void 0);
 __decorate([
-    OneToOne(() => Credential, { cascade: true }),
-    JoinColumn(),
-    __metadata("design:type", Credential)
-], User.prototype, "credentials", void 0);
+    OneToOne("Credential", "user", { lazy: true, cascade: true }),
+    __metadata("design:type", Promise)
+], User.prototype, "credential", void 0);
 __decorate([
-    OneToMany(() => Appointment, appointments => appointments.user),
+    OneToMany("Appointment", "user"),
     __metadata("design:type", Array)
-], User.prototype, "appointment", void 0);
+], User.prototype, "appointments", void 0);
 __decorate([
     CreateDateColumn(),
     __metadata("design:type", Date)

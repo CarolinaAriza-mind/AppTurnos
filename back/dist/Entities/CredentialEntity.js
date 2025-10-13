@@ -7,15 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { User } from "./UserEntity.js";
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 let Credential = class Credential {
-    id;
-    username;
-    password;
-    user;
-    creatAt;
-    upDate;
 };
 __decorate([
     PrimaryGeneratedColumn(),
@@ -26,12 +19,13 @@ __decorate([
     __metadata("design:type", String)
 ], Credential.prototype, "username", void 0);
 __decorate([
-    Column({ type: "varchar", length: 100, nullable: false }),
+    Column({ type: "varchar", length: 100, nullable: true }),
     __metadata("design:type", String)
 ], Credential.prototype, "password", void 0);
 __decorate([
-    OneToOne(() => User),
-    __metadata("design:type", User)
+    OneToOne("User", "credential", { lazy: true }),
+    JoinColumn(),
+    __metadata("design:type", Promise)
 ], Credential.prototype, "user", void 0);
 __decorate([
     CreateDateColumn(),

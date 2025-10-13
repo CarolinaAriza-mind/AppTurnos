@@ -1,13 +1,7 @@
-import { DataSource, Repository } from "typeorm";
-import {
-  DB_DATABASE,
-  DB_HOST,
-  DB_PASSWORD,
-  DB_PORT,
-  DB_USERNAME,
-} from "./envs.js";
-import { User } from "../Entities/UserEntity.js";
-import { Credential } from "../Entities/CredentialEntity.js";
+import { DataSource, type Repository } from "typeorm"
+import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USERNAME } from "./envs.js"
+import { User } from "../Entities/UserEntity.js"
+import { Credential } from "../Entities/CredentialEntity.js"
 
 export const appDataSource = new DataSource({
   type: "postgres",
@@ -19,9 +13,8 @@ export const appDataSource = new DataSource({
   synchronize: true,
   dropSchema: true,
   logging: ["error"],
-  entities: ["src/Entities/**/*.ts"],
-});
+  entities: ["dist/Entities/**/*.js"],
+})
 
-export const userModel: Repository<User> = appDataSource.getRepository(User);
-export const credentialModel: Repository<Credential> =
-  appDataSource.getRepository(Credential);
+export const userModel: Repository<User> = appDataSource.getRepository(User)
+export const credentialModel: Repository<Credential> = appDataSource.getRepository(Credential)

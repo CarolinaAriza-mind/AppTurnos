@@ -9,15 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Status } from "../DTO/AppointmentDTO.js";
-import { User } from "./UserEntity.js";
 let Appointment = class Appointment {
-    id;
-    date;
-    time;
-    user;
-    appointmentStatus;
-    creatAt;
-    upDate;
 };
 __decorate([
     PrimaryGeneratedColumn(),
@@ -32,8 +24,8 @@ __decorate([
     __metadata("design:type", String)
 ], Appointment.prototype, "time", void 0);
 __decorate([
-    ManyToOne(() => User, user => user.appointment, { nullable: false }),
-    __metadata("design:type", User)
+    ManyToOne("User", "appointments", { nullable: true }),
+    __metadata("design:type", Object)
 ], Appointment.prototype, "user", void 0);
 __decorate([
     Column({ type: "varchar", length: 10, nullable: false, default: Status.active }),
