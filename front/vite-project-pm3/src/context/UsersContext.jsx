@@ -1,6 +1,8 @@
 import { createContext, useState } from "react";
 import axios from "axios";
 
+const API = import.meta.env.VITE_API_URL;
+
 export const UsersContext = createContext({
   isLogged: {},
   userAppointments: [],
@@ -19,12 +21,12 @@ export const UsersProvider = ({ children }) => {
   const [userAppointments, setUserAppointments] = useState([]);
 
   const registerUser = async (userData) => {
-    return await axios.post("http://localhost:3001/users/register", userData);
+    return await axios.post(`${API}/users/register`, userData);
   };
 
   const loginUser = async (userData) => {
     const respuesta = await axios.post(
-      "http://localhost:3001/users/login",
+      `${API}/users/login`,
       userData
     );
     if (respuesta.status === 200) {
@@ -40,7 +42,7 @@ export const UsersProvider = ({ children }) => {
 
   const getUsersAppointments = async () => {
     const respuesta = await axios.get(
-      `http://localhost:3001/users/${isLogged.id}`
+      `${API}/users/${isLogged.id}`
     );
 
     setUserAppointments(respuesta.data.data.appointment);
@@ -54,14 +56,14 @@ export const UsersProvider = ({ children }) => {
 
     console.log(appInfo);
     return await axios.post(
-      "http://localhost:3001/appointments/schedule",
+      `${API}/appointments/schedule`,
       appInfo
     );
   };
 
   const cancelUserApp = async (id) => {
     try {
-      await axios.put(`http://localhost:3001/appointments/cancel/${id}`);
+      await axios.put(`${API}/appointments/cancel/${id}`);
       const nuevoArrayApp = userAppointments.map((app) => {
         if (app.id === id) {
           return { ...app, appointmentStatus: "cancelado" };
