@@ -5,7 +5,14 @@ import dotenv from "dotenv";
 import cors from "cors";
 const server = express();
 server.use(express.json());
-server.use(cors());
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://appreservasrenaser.netlify.app'
+];
+server.use(cors({
+    origin: allowedOrigins,
+    credentials: true
+}));
 server.use(morgan("dev"));
 dotenv.config();
 server.use(router);
