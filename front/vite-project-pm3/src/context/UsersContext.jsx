@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
 import axios from "axios";
-import { API } from "../config/envs";
 
 export const UsersContext = createContext({
   isLogged: {},
@@ -20,12 +19,12 @@ export const UsersProvider = ({ children }) => {
   const [userAppointments, setUserAppointments] = useState([]);
 
   const registerUser = async (userData) => {
-    return await axios.post(`${API}/users/register`, userData);
+    return await axios.post(`https://appturnos-tsic.onrender.com/users/register`, userData);
   };
 
   const loginUser = async (userData) => {
     const respuesta = await axios.post(
-      `${API}/users/login`,
+      `https://appturnos-tsic.onrender.com/users/login`,
       userData
     );
     if (respuesta.status === 200) {
@@ -41,7 +40,7 @@ export const UsersProvider = ({ children }) => {
 
   const getUsersAppointments = async () => {
     const respuesta = await axios.get(
-      `${API}/users/${isLogged.id}`
+      `https://appturnos-tsic.onrender.com/users/${isLogged.id}`
     );
 
     setUserAppointments(respuesta.data.data.appointment);
@@ -55,14 +54,14 @@ export const UsersProvider = ({ children }) => {
 
     console.log(appInfo);
     return await axios.post(
-      `${API}/appointments/schedule`,
+      `https://appturnos-tsic.onrender.com/appointments/schedule`,
       appInfo
     );
   };
 
   const cancelUserApp = async (id) => {
     try {
-      await axios.put(`${API}/appointments/cancel/${id}`);
+      await axios.put(`https://appturnos-tsic.onrender.com/appointments/cancel/${id}`);
       const nuevoArrayApp = userAppointments.map((app) => {
         if (app.id === id) {
           return { ...app, appointmentStatus: "cancelado" };
