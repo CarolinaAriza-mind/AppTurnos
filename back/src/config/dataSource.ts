@@ -1,19 +1,17 @@
 import { DataSource, type Repository } from "typeorm"
-import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USERNAME } from "./envs.js"
+import { DB_DATABASE, DATABASE_URL, DB_PASSWORD, DB_PORT, DB_USERNAME, DB_HOST } from "./envs.js"
 import { User } from "../Entities/UserEntity.js"
 import { Credential } from "../Entities/CredentialEntity.js"
+import { Appointment } from "../Entities/AppointmentEntitiy.js"
 
 export const appDataSource = new DataSource({
   type: "postgres",
   host: DB_HOST,
-  port: DB_PORT,
-  username: DB_USERNAME,
-  password: DB_PASSWORD,
-  database: DB_DATABASE,
+  url: process.env.DATABASE_URL,
   synchronize: true,
-  dropSchema: true,
-  logging: ["error"],
-  entities: ["dist/Entities/**/*.js"],
+  logging: false,
+  entities: [User, Credential, Appointment],
+  ssl: { rejectUnauthorized: false },
 })
 
 export const userModel: Repository<User> = appDataSource.getRepository(User)
