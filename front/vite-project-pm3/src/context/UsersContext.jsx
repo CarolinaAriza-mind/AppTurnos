@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
 import axios from "axios";
-
-const API = import.meta.env.VITE_API_URL;
+import { API } from "../config/envs";
 
 export const UsersContext = createContext({
   isLogged: {},
