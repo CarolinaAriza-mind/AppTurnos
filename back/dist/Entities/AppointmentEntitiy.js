@@ -24,7 +24,7 @@ __decorate([
     __metadata("design:type", String)
 ], Appointment.prototype, "time", void 0);
 __decorate([
-    ManyToOne("User", "appointment", { nullable: true }),
+    ManyToOne("User", "appointments", { nullable: true }),
     __metadata("design:type", Object)
 ], Appointment.prototype, "user", void 0);
 __decorate([
@@ -45,6 +45,6 @@ __decorate([
     __metadata("design:type", Date)
 ], Appointment.prototype, "upDate", void 0);
 Appointment = __decorate([
-    Entity("appointment")
+    Entity("appointments")
 ], Appointment);
 export { Appointment };

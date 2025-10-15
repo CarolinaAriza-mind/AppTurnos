@@ -23,7 +23,7 @@ export const returnUserByIdServices = async (id) => {
         where: {
             id: id,
         },
-        relations: ["appointment"]
+        relations: ["appointments"]
     });
     if (!IdUser)
         throw new Error(`Usuario con id: ${id}, no encontrado`);
