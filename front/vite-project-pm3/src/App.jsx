@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     const rutasValidas = [
-      "/home",
+      "/Home",
       "/Login",
       "/Registro",
       "/CrearTurno",
@@ -37,9 +37,9 @@ function App() {
       isLogged &&
       (location.pathname === "/Login" || location.pathname === "/Registro")
     ) {
-      navigate("/home");
+      navigate("/Home");
     }
-  }, [isLogged, navigate, location.pathname]);
+  }, []);
 
   return (
     <>
@@ -55,7 +55,7 @@ function App() {
           {!isNotFound && <NavBar />}
           <main>
             <Routes>
-              <Route path="/home" element={<Home />} />
+              <Route path="/Home" element={<Home />} />
               <Route path="/CrearTurno" element={<CrearTurno />} />
               <Route path="/MisTurnos" element={<MisTurnos />} />
             </Routes>

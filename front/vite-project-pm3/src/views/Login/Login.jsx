@@ -35,6 +35,7 @@ const Login = () => {
           showConfirmButton: false,
         });
 
+        navigate("/Home"); 
       } catch (err) {
         const msg = err?.response?.data?.msg || "Error al iniciar sesión";
         Swal.fire({
