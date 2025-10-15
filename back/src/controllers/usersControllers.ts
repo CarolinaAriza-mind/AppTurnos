@@ -11,6 +11,7 @@ import { CredentialDTO } from "../DTO/CredentialsDTO.js";
 import { userModel } from "../config/dataSource.js";
 import { User } from "../Entities/UserEntity.js";
 import { sendWelcomeEmail } from "../services/mailerServices.js";
+import { log } from "console";
 
 export const getUserController = async (req: Request, res: Response) => {
   try {
@@ -52,6 +53,7 @@ export const registerUserController = async (
       msge: "Nuevo Usuario registrado",
       data: newUser,
     });
+    console.log(req.body)
   } catch (err) {
     const detailErr = err as PostgresError;
     res.status(400).json({
@@ -64,6 +66,7 @@ export const registerUserController = async (
     });
   }
 };
+
 
 export const loginUserController = async (
   req: Request<unknown, unknown, CredentialDTO>,

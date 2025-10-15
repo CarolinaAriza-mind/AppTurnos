@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { AppointmentDTO } from "../DTO/AppointmentDTO";
 
 @Entity("users")
 export class User {
@@ -27,10 +28,10 @@ export class User {
   nDni: number;
 
  @OneToOne("Credential", "user", { lazy: true, cascade: true })
-credential!: Promise<any>;
+credential!: Promise<void>;
 
  @OneToMany("Appointment", "user")
-appointments: any[];
+appointments: AppointmentDTO[];
 
   @CreateDateColumn()
   creatAt: Date;
