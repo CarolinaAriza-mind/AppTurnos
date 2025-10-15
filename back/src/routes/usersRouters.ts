@@ -10,7 +10,7 @@ import { CredentialDTO } from "../DTO/CredentialsDTO.js";
 
 const userRouter: Router = Router();
 
-userRouter.get("/home", (req: Request, res: Response) =>
+userRouter.get("/", (req: Request, res: Response) =>
   getUserController(req, res)
 );
 userRouter.get("/:id", (req: Request<{ id: string }>, res: Response) =>

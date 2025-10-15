@@ -9,7 +9,7 @@ import {
 import { Status } from "../DTO/AppointmentDTO.js";
 import { UserDTO } from "../DTO/UserDTO.js";
 
-@Entity("appointments")
+@Entity("appointment")
 export class Appointment {
   @PrimaryGeneratedColumn()
   id: number;
@@ -20,7 +20,7 @@ export class Appointment {
   @Column({ type: "varchar", length: 5, nullable: false })
   time: string;
 
-  @ManyToOne("User", "appointments", { nullable: true })
+  @ManyToOne("User", "appointment", { nullable: true })
   user: UserDTO;
 
   @Column({

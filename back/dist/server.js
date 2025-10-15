@@ -7,7 +7,7 @@ const server = express();
 server.use(express.json());
 const allowedOrigins = [
     'http://localhost:5173',
-    'https://appreservasrenaser.netlify.app/'
+    'https://appreservasrenaser.netlify.app'
 ];
 server.use(cors({
     origin: allowedOrigins,

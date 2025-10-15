@@ -1,11 +1,10 @@
 import { DataSource } from "typeorm";
-import { DATABASE_URL, DB_HOST } from "./envs.js";
+import { DATABASE_URL } from "./envs.js";
 import { User } from "../Entities/UserEntity.js";
 import { Credential } from "../Entities/CredentialEntity.js";
 import { Appointment } from "../Entities/AppointmentEntitiy.js";
 export const appDataSource = new DataSource({
     type: "postgres",
-    host: DB_HOST,
     url: DATABASE_URL,
     synchronize: true,
     logging: false,

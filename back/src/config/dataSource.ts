@@ -6,7 +6,6 @@ import { Appointment } from "../Entities/AppointmentEntitiy.js"
 
 export const appDataSource = new DataSource({
   type: "postgres",
-  host: DB_HOST,
   url: DATABASE_URL,
   synchronize: true,
   logging: false,

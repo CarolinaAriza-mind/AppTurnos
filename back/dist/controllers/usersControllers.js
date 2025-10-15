@@ -36,6 +36,7 @@ export const registerUserController = async (req, res) => {
             msge: "Nuevo Usuario registrado",
             data: newUser,
         });
+        console.log(req.body);
     }
     catch (err) {
         const detailErr = err;

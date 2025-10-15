@@ -9,7 +9,7 @@ import { AppointmentDTO } from "../DTO/AppointmentDTO.js";
 
 const appointmentsRouter: Router = Router();
 
-appointmentsRouter.get("/home", (req: Request, res: Response) =>
+appointmentsRouter.get("/", (req: Request, res: Response) =>
   getAppointmentsUserController(req, res)
 );
 appointmentsRouter.get("/:id", (req: Request<{ id: string }>, res: Response) =>
