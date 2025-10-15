@@ -38,7 +38,7 @@ export const returnUserByIdServices = async (id: number): Promise<User> => {
     where: {
       id: id,
     },
-    relations: ["appointment"]
+    relations: ["appointments"]
   });
   if (!IdUser) throw new Error(`Usuario con id: ${id}, no encontrado`);
   return IdUser;
