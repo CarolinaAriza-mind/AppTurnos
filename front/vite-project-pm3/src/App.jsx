@@ -39,7 +39,7 @@ function App() {
     ) {
       navigate("/Home");
     }
-  }, [isLogged, location.pathname]);
+  }, [isLogged, location.pathname, navigate]);
 
   return (
     <>

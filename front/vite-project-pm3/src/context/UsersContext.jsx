@@ -19,20 +19,24 @@ export const UsersProvider = ({ children }) => {
   const [userAppointments, setUserAppointments] = useState([]);
 
   const registerUser = async (userData) => {
-    return await axios.post(`https://appturnos-tsic.onrender.com/users/register`, userData);
-  };
+  return await axios.post(
+    "https://appturnos-tsic.onrender.com/users/register",
+    userData,
+    { withCredentials: true }
+  );
+};
 
-  const loginUser = async (userData) => {
-    const respuesta = await axios.post(
-      `https://appturnos-tsic.onrender.com/users/login`,
-      userData
-    );
-    if (respuesta.status === 200) {
-      localStorage.setItem("user", JSON.stringify(respuesta.data.user));
-      setIsLogged(respuesta.data.user);
-    }
-  };
-
+const loginUser = async (userData) => {
+  const respuesta = await axios.post(
+    "https://appturnos-tsic.onrender.com/users/login",
+    userData,
+    { withCredentials: true }
+  );
+  if (respuesta.status === 200) {
+    localStorage.setItem("user", JSON.stringify(respuesta.data.user));
+    setIsLogged(respuesta.data.user);
+  }
+}
   const logOutUser = () => {
     localStorage.removeItem("user");
     setIsLogged(false);
