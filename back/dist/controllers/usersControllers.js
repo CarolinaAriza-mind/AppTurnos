@@ -1,7 +1,8 @@
 import { AllUsersServices, createNewUserService, returnUserByIdServices, } from "../services/userServices.js";
 import { authNewCredentials } from "../services/credentialServices.js";
-import { userModel } from "../config/dataSource.js";
+import { initRepositories } from "../config/dataSource.js";
 import { sendWelcomeEmail } from "../services/mailerServices.js";
+// GET ALL USERS
 export const getUserController = async (req, res) => {
     try {
         res.status(200).json({
@@ -15,6 +16,7 @@ export const getUserController = async (req, res) => {
         });
     }
 };
+// GET USER BY ID
 export const getUserByIdController = async (req, res) => {
     try {
         res.status(200).json({
@@ -28,6 +30,7 @@ export const getUserByIdController = async (req, res) => {
         });
     }
 };
+// REGISTER NEW USER
 export const registerUserController = async (req, res) => {
     try {
         const newUser = await createNewUserService(req.body);
@@ -36,7 +39,6 @@ export const registerUserController = async (req, res) => {
             msge: "Nuevo Usuario registrado",
             data: newUser,
         });
-        console.log(req.body);
     }
     catch (err) {
         const detailErr = err;
@@ -49,20 +51,19 @@ export const registerUserController = async (req, res) => {
         });
     }
 };
+// LOGIN USER
 export const loginUserController = async (req, res) => {
     try {
         const credentialID = await authNewCredentials(req.body.username, req.body.password);
+        // ✅ Obtener userModel dinámicamente
+        const { userModel } = await initRepositories();
         const userFound = await userModel.findOne({
-            where: {
-                credential: {
-                    id: credentialID,
-                },
-            },
-            relations: ["credential"],
+            where: { credential: { id: credentialID } },
+            relations: ["credentials"],
         });
         return res.status(200).json({
             login: true,
-            message: "Usuario logueado con exito",
+            message: "Usuario logueado con éxito",
             user: userFound,
         });
     }

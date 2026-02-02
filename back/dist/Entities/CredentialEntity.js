@@ -9,6 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 let Credential = class Credential {
+    id;
+    username;
+    password;
+    user;
+    creatAt;
+    upDate;
 };
 __decorate([
     PrimaryGeneratedColumn(),

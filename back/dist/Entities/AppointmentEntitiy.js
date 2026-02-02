@@ -10,6 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn, } from "typeorm";
 import { Status } from "../DTO/AppointmentDTO.js";
 let Appointment = class Appointment {
+    id;
+    date;
+    time;
+    user;
+    appointmentStatus;
+    creatAt;
+    upDate;
 };
 __decorate([
     PrimaryGeneratedColumn(),

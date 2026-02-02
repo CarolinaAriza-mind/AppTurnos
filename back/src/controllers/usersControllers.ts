@@ -8,11 +8,11 @@ import {
 import { PostgresError } from "../DTO/ErrorDTO.js";
 import { authNewCredentials } from "../services/credentialServices.js";
 import { CredentialDTO } from "../DTO/CredentialsDTO.js";
-import { userModel } from "../config/dataSource.js";
+import { initRepositories } from "../config/dataSource.js";
 import { User } from "../Entities/UserEntity.js";
 import { sendWelcomeEmail } from "../services/mailerServices.js";
-import { log } from "console";
 
+// GET ALL USERS
 export const getUserController = async (req: Request, res: Response) => {
   try {
     res.status(200).json({
@@ -26,6 +26,7 @@ export const getUserController = async (req: Request, res: Response) => {
   }
 };
 
+// GET USER BY ID
 export const getUserByIdController = async (
   req: Request<{ id: string }>,
   res: Response
@@ -42,6 +43,7 @@ export const getUserByIdController = async (
   }
 };
 
+// REGISTER NEW USER
 export const registerUserController = async (
   req: Request<unknown, unknown, UserRegisterDTO>,
   res: Response
@@ -53,7 +55,6 @@ export const registerUserController = async (
       msge: "Nuevo Usuario registrado",
       data: newUser,
     });
-    console.log(req.body)
   } catch (err) {
     const detailErr = err as PostgresError;
     res.status(400).json({
@@ -67,7 +68,7 @@ export const registerUserController = async (
   }
 };
 
-
+// LOGIN USER
 export const loginUserController = async (
   req: Request<unknown, unknown, CredentialDTO>,
   res: Response
@@ -77,17 +78,18 @@ export const loginUserController = async (
       req.body.username,
       req.body.password
     );
+
+    // ✅ Obtener userModel dinámicamente
+    const { userModel } = await initRepositories();
+
     const userFound: User | null = await userModel.findOne({
-      where: {
-        credential: {
-          id: credentialID,
-        },
-      },
-      relations:["credential"],
+      where: { credential: { id: credentialID } },
+      relations: ["credentials"],
     });
+
     return res.status(200).json({
       login: true,
-      message: "Usuario logueado con exito",
+      message: "Usuario logueado con éxito",
       user: userFound,
     });
   } catch (err) {
