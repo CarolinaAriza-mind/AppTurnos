@@ -13,7 +13,7 @@ server.use(morgan("dev"));
 const allowedOrigins = [
   "http://localhost:5173",
   "https://appreservasrenaser.netlify.app",
-  "http://appturnos-production-b130.up.railway.app",
+  "https://appturnos-production-b130.up.railway.app",
 ];
 
 server.use(
