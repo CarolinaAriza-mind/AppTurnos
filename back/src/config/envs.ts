@@ -1,6 +1,10 @@
 import dotenv from "dotenv";
 
 // Carga el .env desde back/ (donde se corre npm run dev)
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
+
 dotenv.config();
 
 // Detectar entorno
