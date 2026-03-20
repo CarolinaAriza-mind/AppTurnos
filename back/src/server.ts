@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 import express, { Application, Request, Response } from "express";
 import router from "./routes/indexRouter.js";
 import morgan from "morgan";
@@ -16,6 +13,7 @@ server.use(morgan("dev"));
 const allowedOrigins = [
   "http://localhost:5173",
   "https://appreservasrenaser.netlify.app",
+  "http://appturnos-production-b130.up.railway.app",
 ];
 
 server.use(
