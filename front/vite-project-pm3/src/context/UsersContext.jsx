@@ -1,6 +1,8 @@
 import { createContext, useState } from "react";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL || "https://appturnos-production-b130.up.railway.app";
+
 export const UsersContext = createContext({
   isLogged: {},
   userAppointments: [],
@@ -19,24 +21,25 @@ export const UsersProvider = ({ children }) => {
   const [userAppointments, setUserAppointments] = useState([]);
 
   const registerUser = async (userData) => {
-  return await axios.post(
-    ,
-    userData,
-    { withCredentials: true }
-  );
-};
+    return await axios.post(
+      `${API_URL}/users/register`,
+      userData,
+      { withCredentials: true }
+    );
+  };
 
-const loginUser = async (userData) => {
-  const respuesta = await axios.post(
-    "https://appturnos-tsic.onrender.com/users/login",
-    userData,
-    { withCredentials: true }
-  );
-  if (respuesta.status === 200) {
-    localStorage.setItem("user", JSON.stringify(respuesta.data.user));
-    setIsLogged(respuesta.data.user);
-  }
-}
+  const loginUser = async (userData) => {
+    const respuesta = await axios.post(
+      `${API_URL}/users/login`,
+      userData,
+      { withCredentials: true }
+    );
+    if (respuesta.status === 200) {
+      localStorage.setItem("user", JSON.stringify(respuesta.data.user));
+      setIsLogged(respuesta.data.user);
+    }
+  };
+
   const logOutUser = () => {
     localStorage.removeItem("user");
     setIsLogged(false);
@@ -44,9 +47,8 @@ const loginUser = async (userData) => {
 
   const getUsersAppointments = async () => {
     const respuesta = await axios.get(
-      `https://appturnos-tsic.onrender.com/users/${isLogged.id}`
+      `${API_URL}/users/${isLogged.id}`
     );
-
     setUserAppointments(respuesta.data.data.appointment);
   };
 
@@ -55,17 +57,16 @@ const loginUser = async (userData) => {
       ...dateTime,
       userID: isLogged.id,
     };
-
     console.log(appInfo);
     return await axios.post(
-      `https://appturnos-tsic.onrender.com/appointments/schedule`,
+      `${API_URL}/appointments/schedule`,
       appInfo
     );
   };
 
   const cancelUserApp = async (id) => {
     try {
-      await axios.put(`https://appturnos-tsic.onrender.com/appointments/cancel/${id}`);
+      await axios.put(`${API_URL}/appointments/cancel/${id}`);
       const nuevoArrayApp = userAppointments.map((app) => {
         if (app.id === id) {
           return { ...app, appointmentStatus: "cancelado" };
@@ -87,6 +88,7 @@ const loginUser = async (userData) => {
     createUserApp,
     cancelUserApp,
   };
+
   return (
     <UsersContext.Provider value={value}>{children}</UsersContext.Provider>
   );
