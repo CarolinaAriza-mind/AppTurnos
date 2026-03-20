@@ -20,7 +20,7 @@ export const UsersProvider = ({ children }) => {
 
   const registerUser = async (userData) => {
   return await axios.post(
-    "https://appturnos-tsic.onrender.com/users/register",
+    ,
     userData,
     { withCredentials: true }
   );
