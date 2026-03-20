@@ -17,7 +17,7 @@ export const appDataSource = new DataSource({
         database: DATABASE_CONFIG.database,
         ssl: false,
       }),
-  synchronize: true, // ⚠️ cambiar a false en producción
+  synchronize: process.env.NODE_ENV !== "production", // ⚠️ cambiar a false en producción
   logging: false,
   entities: [User, Credential, Appointment],
 });
