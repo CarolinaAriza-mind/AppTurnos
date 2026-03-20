@@ -32,7 +32,7 @@ server.use(
 );
 
 // Para manejar preflight requests (OPTIONS)
-server.options("*", cors());
+server.options("/{*path}", cors());
 
 // Rutas
 server.use("/users", router);
