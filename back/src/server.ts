@@ -35,7 +35,7 @@ server.use(
 server.options("/{*path}", cors());
 
 // Rutas
-server.use("/users", router);
+server.use("/", router);
 
 // Root
 server.get("/", (_, res: Response) => {
