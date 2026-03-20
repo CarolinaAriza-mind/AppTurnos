@@ -9,7 +9,7 @@ import { appDataSource } from "./config/dataSource.js";
 // ... resto de imports
 
 const app = express();
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT;
 
 // Middlewares
 app.use(cors());
