@@ -24,7 +24,6 @@ export const UsersProvider = ({ children }) => {
     return await axios.post(
       `${API_URL}/users/register`,
       userData,
-      { withCredentials: true }
     );
   };
 
@@ -32,7 +31,7 @@ export const UsersProvider = ({ children }) => {
     const respuesta = await axios.post(
       `${API_URL}/users/login`,
       userData,
-      { withCredentials: true }
+
     );
     if (respuesta.status === 200) {
       localStorage.setItem("user", JSON.stringify(respuesta.data.user));

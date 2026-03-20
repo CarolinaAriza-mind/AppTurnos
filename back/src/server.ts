@@ -19,17 +19,16 @@ const allowedOrigins = [
 server.use(
   cors({
     origin: (origin, callback) => {
-      // Permite solicitudes sin origin (Postman, curl)
       if (!origin) return callback(null, true);
-
       if (allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
         callback(new Error("CORS no permitido por el servidor"));
       }
     },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // permite todos los métodos usados
-    credentials: true, // permite cookies / auth headers
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"], // ← agregar esto
+    credentials: true,
   })
 );
 
