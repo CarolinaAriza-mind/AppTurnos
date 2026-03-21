@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { UsersContext } from "../../context/UsersContext";
 
 const CrearTurno = () => {
-  const { createUserApp } = useContext(UsersContext);
+  const { createUserApp, getUsersAppointments } = useContext(UsersContext);
 
   const formik = useFormik({
     initialValues: {
@@ -21,6 +21,7 @@ const CrearTurno = () => {
     onSubmit: async (values) => {
       try {
         await createUserApp(values);
+        await getUsersAppointments(); // ← agregar esta línea
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -43,7 +44,7 @@ const CrearTurno = () => {
       }
     },
   });
-  
+
   return (
     <div className={style.formContainer}>
       <form className={style.formGroup} onSubmit={formik.handleSubmit}>
