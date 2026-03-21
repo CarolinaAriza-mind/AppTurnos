@@ -15,7 +15,7 @@ console.log("🌎 Entorno:", isProduction ? "Producción" : "Desarrollo");
 // ------------------- CONFIGURACIÓN COMÚN -------------------
 export const PORT: number = process.env.PORT
   ? parseInt(process.env.PORT)
-  : 3003;
+  : 8080;
 
 export const RESEND_API_KEY: string = process.env.RESEND_API_KEY || "";
 
