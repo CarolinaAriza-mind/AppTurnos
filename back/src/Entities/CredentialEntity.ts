@@ -6,7 +6,7 @@ import { UserDTO } from "../DTO/UserDTO.js";
 export class Credential {
 
 @PrimaryGeneratedColumn()
-  id: number;
+id: number;
 
 @Column({type: "varchar", length: 15, nullable: false, unique: true})
 username: string;

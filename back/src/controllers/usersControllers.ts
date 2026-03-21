@@ -79,13 +79,15 @@ export const loginUserController = async (
       req.body.password
     );
 
-    // ✅ Obtener userModel dinámicamente
-    const { userModel } = await initRepositories();
-
-    const userFound: User | null = await userModel.findOne({
-      where: { credential: { id: credentialID } },
-      relations: ["credential"],
+    const { credentialModel } = await initRepositories();
+    
+    // Buscar el credential y resolver la relación lazy
+    const credential = await credentialModel.findOne({
+      where: { id: credentialID },
+      relations: ["user"] // cargar la relación eager
     });
+
+    const userFound = credential?.user ?? null;
 
     return res.status(200).json({
       login: true,
@@ -95,12 +97,9 @@ export const loginUserController = async (
   } catch (err) {
     const detailErr = err as PostgresError;
     res.status(400).json({
-      msg:
-        detailErr instanceof Error
-          ? detailErr.detail
-            ? detailErr.detail
-            : detailErr.message
-          : "Error desconocido",
+      msg: detailErr instanceof Error
+        ? detailErr.detail ?? detailErr.message
+        : "Error desconocido",
     });
   }
 };
