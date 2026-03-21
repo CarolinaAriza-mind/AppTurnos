@@ -1,6 +1,5 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./UserEntity.js";
-import { UserDTO } from "../DTO/UserDTO.js";
 
 @Entity()
 export class Credential {
@@ -16,7 +15,7 @@ password: string;
 
  @OneToOne("User", "credential", { lazy: true })
 @JoinColumn()
-user!: Promise<UserDTO>;
+user!: Promise<User>;
 
 @CreateDateColumn()
 creatAt: Date

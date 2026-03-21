@@ -4,23 +4,35 @@ import { User } from "../Entities/UserEntity.js";
 import { Credential } from "../Entities/CredentialEntity.js";
 import { createNewCredentials } from "./credentialServices.js";
 
-export const createNewUserService = async (user: UserRegisterDTO): Promise<User> => {
+export const createNewUserService = async (
+  user: UserRegisterDTO,
+): Promise<User> => {
   const { userModel } = await initRepositories();
 
-  const resultTrans: Promise<User> = appDataSource.transaction(async (entityManager) => {
-    const credential: Credential = await createNewCredentials(entityManager, user.username, user.password);
+  const resultTrans: Promise<User> = appDataSource.transaction(
+    async (entityManager) => {
+      const credential: Credential = await createNewCredentials(
+        entityManager,
+        user.username,
+        user.password,
+      );
 
-    const nuevoUsuario: User = entityManager.create(User, {
-      name: user.name,
-      email: user.email,
-      birthdate: user.birthdate,
-      nDni: user.nDni,
-      credentials: credential,
-    });
+      const nuevoUsuario: User = entityManager.create(User, {
+        name: user.name,
+        email: user.email,
+        birthdate: user.birthdate,
+        nDni: user.nDni,
+      });
 
-    return await entityManager.save(nuevoUsuario);
-  });
+      const savedUser = await entityManager.save(nuevoUsuario);
 
+      // Vincular credential al usuario
+      credential.user = Promise.resolve(savedUser);
+      await entityManager.save(credential);
+
+      return savedUser;
+    },
+  );
   return resultTrans;
 };
 
@@ -40,4 +52,3 @@ export const returnUserByIdServices = async (id: number): Promise<User> => {
   if (!IdUser) throw new Error(`Usuario con id: ${id}, no encontrado`);
   return IdUser;
 };
-

@@ -2,13 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { AppointmentDTO } from "../DTO/AppointmentDTO";
+import { Credential } from "./CredentialEntity";
 
 @Entity("users")
 export class User {
@@ -28,7 +28,7 @@ export class User {
   nDni: number;
 
  @OneToOne("Credential", "user", { lazy: true, cascade: true })
-credential!: Promise<void>;
+credential!: Promise<Credential>;
 
  @OneToMany("Appointment", "user")
 appointments: AppointmentDTO[];
