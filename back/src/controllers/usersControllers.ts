@@ -29,7 +29,7 @@ export const getUserController = async (req: Request, res: Response) => {
 // GET USER BY ID
 export const getUserByIdController = async (
   req: Request<{ id: string }>,
-  res: Response
+  res: Response,
 ) => {
   try {
     res.status(200).json({
@@ -46,7 +46,7 @@ export const getUserByIdController = async (
 // REGISTER NEW USER
 export const registerUserController = async (
   req: Request<unknown, unknown, UserRegisterDTO>,
-  res: Response
+  res: Response,
 ) => {
   try {
     const newUser = await createNewUserService(req.body);
@@ -71,24 +71,24 @@ export const registerUserController = async (
 // LOGIN USER
 export const loginUserController = async (
   req: Request<unknown, unknown, CredentialDTO>,
-  res: Response
+  res: Response,
 ) => {
   try {
     const credentialID = await authNewCredentials(
       req.body.username,
-      req.body.password
+      req.body.password,
     );
 
     const { credentialModel } = await initRepositories();
-    
+
     // Buscar el credential y resolver la relación lazy
     const credential = await credentialModel.findOne({
       where: { id: credentialID },
-      relations: ["user"] // cargar la relación eager
+      relations: ["user"],
     });
 
-    const userFound = credential?.user ?? null;
-
+    // ← resolver la promesa lazy
+    const userFound = credential?.user ? await credential.user : null;
     return res.status(200).json({
       login: true,
       message: "Usuario logueado con éxito",
@@ -97,9 +97,10 @@ export const loginUserController = async (
   } catch (err) {
     const detailErr = err as PostgresError;
     res.status(400).json({
-      msg: detailErr instanceof Error
-        ? detailErr.detail ?? detailErr.message
-        : "Error desconocido",
+      msg:
+        detailErr instanceof Error
+          ? (detailErr.detail ?? detailErr.message)
+          : "Error desconocido",
     });
   }
 };
