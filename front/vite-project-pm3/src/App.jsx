@@ -31,7 +31,7 @@ function App() {
       location.pathname !== "/Login" &&
       location.pathname !== "/Registro"
     ) {
-      navigate("/Registro");
+      navigate("/Login");
     }
     if (
       isLogged &&
