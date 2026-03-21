@@ -83,12 +83,15 @@ export const loginUserController = async (
 
     // Buscar el credential y resolver la relación lazy
     const credential = await credentialModel.findOne({
-      where: { id: credentialID },
-      relations: ["user"],
-    });
+  where: { id: credentialID },
+  relations: ["user"]
+});
 
-    // ← resolver la promesa lazy
-    const userFound = credential?.user ? await credential.user : null;
+console.log("credential encontrado:", credential);
+console.log("user en credential:", credential?.user);
+
+const userFound = credential?.user ? await credential.user : null;
+console.log("userFound:", userFound);
     return res.status(200).json({
       login: true,
       message: "Usuario logueado con éxito",
