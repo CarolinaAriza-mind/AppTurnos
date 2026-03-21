@@ -84,7 +84,7 @@ export const loginUserController = async (
 
     const userFound: User | null = await userModel.findOne({
       where: { credential: { id: credentialID } },
-      relations: ["credentials"],
+      relations: ["credential"],
     });
 
     return res.status(200).json({
