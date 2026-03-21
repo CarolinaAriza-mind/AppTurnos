@@ -44,12 +44,12 @@ export const UsersProvider = ({ children }) => {
     setIsLogged(false);
   };
 
-  const getUsersAppointments = async () => {
-    const respuesta = await axios.get(
-      `${API_URL}/users/${isLogged.id}`
-    );
-    setUserAppointments(respuesta.data.data.appointment);
-  };
+ const getUsersAppointments = async () => {
+  const respuesta = await axios.get(
+    `${API_URL}/users/${isLogged.id}`
+  );
+  setUserAppointments(respuesta.data.data.appointments); // ← plural
+};
 
   const createUserApp = async (dateTime) => {
     const appInfo = {
