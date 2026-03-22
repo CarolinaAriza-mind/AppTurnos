@@ -12,7 +12,7 @@ server.use(morgan("dev"));
 // CORS dinámico
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://appreservasrenaser.netlify.app",
+  "https://app-turnos-tau.vercel.app",
   "https://appturnos-production-b130.up.railway.app",
 ];
 
