@@ -126,7 +126,7 @@ export const ChangeStatusAppointmentController = async (
       turno.time
     );
     res.status(200).json({
-      msagge: "Turno Cancelado con exito",
+      msagge: "Turno Cancelado exitosamente",
       data: {
         id: turno.id,
         name: turno.user.name,
