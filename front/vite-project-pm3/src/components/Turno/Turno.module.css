@@ -1,52 +1,52 @@
 .app {
-   background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
-   border-radius: 12px;
+  background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 50px;
-  padding: 10px;
-  margin: 20px;
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin: 10px;
   align-items: center;
   justify-content: center;
   align-content: center;
   text-align: center;
-  transition: filter 0.3s ease;
   transition: transform 0.3s ease-in-out;
 }
 
 .app:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .info {
   color: rgb(255, 255, 255);
-  font-size: 20px;
+  font-size: 14px;
   font-family: "Albert Sans", sans-serif;
   text-decoration: none;
+  line-height: 1.5;
 }
 
 .containerButtonStatus {
-  margin-top: 10px;
+  margin-top: 8px;
   width: 100%;
 }
 
 .buttonStatus {
-  font-size: 15px;
+  font-size: 12px;
   font-family: "Borzoi", sans-serif;
   font-weight: 600;
-  border-radius: 30px;
-  padding: 5px;
-  border: 2px solid white;
-  margin-bottom: 20px;
+  border-radius: 20px;
+  padding: 4px 10px;
+  border: 1.5px solid white;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .active {
-   background: linear-gradient(to right, #f5f5dc, #ffd70066);
+  background: linear-gradient(to right, #f5f5dc, #ffd70066);
   color: #000;
 }
 
 .active:hover {
-     background: linear-gradient(to right,#ffd70066, #f5f5dc);
+  background: linear-gradient(to right, #ffd70066, #f5f5dc);
 }
 
 .cancelled {
@@ -56,12 +56,36 @@
 }
 
 .statusActivo {
-  color: #09ff00ff; 
+  color: #09ff00ff;
   font-weight: bold;
+  font-size: 13px;
 }
 
 .statusCancelado {
-  color: #ff0303; 
+  color: #ff0303;
   font-weight: bold;
+  font-size: 13px;
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 10px 12px;
+    margin: 8px;
+    border-radius: 12px;
+  }
+
+  .info {
+    font-size: 12px;
+  }
+
+  .buttonStatus {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  .statusActivo,
+  .statusCancelado {
+    font-size: 11px;
+  }
 }
 
