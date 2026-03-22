@@ -24,19 +24,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  align-content: center;
   margin-top: 10%;
-  margin-bottom: 15%;
+  margin-bottom: 10%;
+  padding: 0 32px;
+  gap: 40px;
 }
 
 .imgPresentacion {
-width: 700px;
-height: 500px;
-display: flex;
-justify-content: start;
-align-items: center;
-border-radius: 20px;
-animation: slideInLeft 2s ease forwards;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 20px;
+  animation: slideInLeft 2s ease forwards;
+  flex-shrink: 0;
 }
 
 .textoPresentacion {
@@ -44,18 +44,63 @@ animation: slideInLeft 2s ease forwards;
   align-items: center;
   flex-direction: column;
   text-align: center;
-    font-family: 'Borzoi', sans-serif;
-    color: white;
-  width: 40%;
-  font-size: 20px ;
-  margin-left: 70px;
-  margin-bottom: 70px;
+  font-family: 'Borzoi', sans-serif;
+  color: white;
+  width: 50%;
+  font-size: 18px;
   animation: slideInRight 4s ease forwards;
   animation-delay: 0.3s;
 }
 
 .titles {
-  color:#7c8320 ;
-  font-size: 40px;
+  color: #7c8320;
+  font-size: 32px;
   font-family: "Cinzel Decorative", sans-serif;
+  margin-bottom: 16px;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .seccionPresentacion {
+    flex-direction: column;
+    margin-top: 24px;
+    margin-bottom: 40px;
+    padding: 0 24px;
+    gap: 24px;
+  }
+
+  .imgPresentacion {
+    max-width: 100%;
+  }
+
+  .textoPresentacion {
+    width: 100%;
+    font-size: 16px;
+    margin-left: 0;
+    margin-bottom: 0;
+  }
+
+  .titles {
+    font-size: 26px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 480px) {
+  .seccionPresentacion {
+    padding: 0 16px;
+    gap: 16px;
+  }
+
+  .imgPresentacion {
+    border-radius: 12px;
+  }
+
+  .textoPresentacion {
+    font-size: 14px;
+  }
+
+  .titles {
+    font-size: 20px;
+  }
 }
