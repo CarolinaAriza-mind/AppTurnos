@@ -1,10 +1,15 @@
 .containerNav {
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-    background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
-    padding: 10px;
+  background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+  padding: 8px 32px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
 }
 
 ul {
@@ -12,42 +17,80 @@ ul {
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 4px;
 }
-
 
 .item {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 90%;
-  padding: 20px;
-   background: linear-gradient(to right, #f5f5dc, #ffd70066);
+  padding: 10px 16px;
+  background: linear-gradient(to right, #f5f5dc, #ffd70066);
   color: #000;
-  margin: 30px;
- font-family: "VARUNA", sans-serif;
+  margin: 6px;
+  font-family: "VARUNA", sans-serif;
   text-decoration: none;
   border-radius: 30px;
-  border: 3px solid #7a7310;
-  font-size: 20px;
+  border: 2px solid #7a7310;
+  font-size: 15px;
   font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .item:hover {
   color: #000000;
-  border: 3px solid #7a7310;
-    background: linear-gradient(to right,#ffd70066, #f5f5dc);
+  border: 2px solid #7a7310;
+  background: linear-gradient(to right, #ffd70066, #f5f5dc);
 }
 
 .containerLogo {
   display: flex;
   justify-content: flex-start;
-  margin-right: 120px;
+  flex-shrink: 0;
 }
 
 .logo {
-  width: 150px;
-  height: 150px;
+  width: 80px;
+  height: 80px;
   border-radius: 100px;
-  margin: 10px;
+  margin: 4px;
+}
+
+@media (max-width: 768px) {
+  .containerNav {
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+  }
+
+  ul {
+    justify-content: center;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .item {
+    font-size: 13px;
+    padding: 8px 12px;
+    margin: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .item {
+    font-size: 12px;
+    padding: 6px 10px;
+    margin: 3px;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
 }

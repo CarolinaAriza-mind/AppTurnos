@@ -1,52 +1,54 @@
 
 .formContainer {
-  max-width: 430px;
-  margin: 100px auto;
-  padding: 40px;
+  width: 90%;
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 32px 28px;
   background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  align-content: center;
 }
 
 .title {
   color: #7c8320;
- font-family: "Cinzel Decorative", sans-serif;
+  font-family: "Cinzel Decorative", sans-serif;
   text-align: center;
-  margin-bottom: 60px;
-  font-size: 35px;
+  margin-bottom: 32px;
+  font-size: 26px;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .formGroup {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+}
+
+span {
+  color: white;
 }
 
 label {
   display: block;
   color: #ffffff;
   font-weight: 500;
-  font-size: 20px;
-  margin-bottom: 1px;
-  margin-top: 20px;
+  font-size: 15px;
+  margin-bottom: 4px;
+  margin-top: 14px;
   letter-spacing: 0.5px;
 }
 
 input {
-  width: 90%;
-  padding: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
   border: none;
   border-radius: 6px;
   background-color: #222;
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
   transition: box-shadow 0.3s ease;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
 }
 
 input:focus {
@@ -61,30 +63,53 @@ input::placeholder {
 
 .errorMessage {
   color: #ff5e00bb;
-  font-size: 16px;
-  margin-top: 6px;
+  font-size: 13px;
+  margin-top: 4px;
   font-style: italic;
 }
 
 button {
-  width: 90%;
-  padding: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
   background: linear-gradient(to right, #f5f5dc, #ffd70066);
   color: #000;
   font-family: "VARUNA", sans-serif;
   border: none;
   border-radius: 6px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   transition: background 0.3s ease;
-  align-content: center;
-  justify-content: center;
-  margin-top: 8px;
+  margin-top: 16px;
 }
 
 button:hover {
-   background: linear-gradient(to right, #f5f5dc, #ffd70066);
-  color: #000;
+  background: linear-gradient(to right, #ffd70066, #f5f5dc);
 }
 
+@media (max-width: 480px) {
+  .formContainer {
+    margin: 32px auto;
+    padding: 24px 16px;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+
+  label {
+    font-size: 13px;
+  }
+
+  input {
+    font-size: 13px;
+    padding: 9px 10px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

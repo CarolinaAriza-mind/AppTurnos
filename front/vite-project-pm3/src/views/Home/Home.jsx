@@ -1,6 +1,7 @@
 
 import style from "./Home.module.css";
 import SectionHome from "../../components/SectionHome/SectionHome";
+import NavBar from "../../components/NavBar/NavBar";
 
 const Home = () => {
   return (
